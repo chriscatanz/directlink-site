@@ -111,7 +111,8 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height:
 .product-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gradient-primary); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
 .product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
 .product-card:hover::before { transform: scaleX(1); }
-.product-icon { width: 64px; height: 64px; background: var(--gradient-light); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 24px; }
+.product-icon { width: 64px; height: 64px; background: var(--gradient-light); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; padding: 14px; }
+.product-icon img { width: 100%; height: 100%; object-fit: contain; }
 .product-card h3 { font-size: 1.4rem; margin-bottom: 12px; }
 .product-card p { color: var(--text-light); margin-bottom: 20px; }
 .product-link { color: var(--secondary); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
@@ -121,7 +122,8 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height:
 .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
 .feature-box { text-align: center; padding: 40px 28px; border-radius: 20px; background: white; box-shadow: var(--shadow-sm); border: 1px solid var(--border); transition: all 0.4s; }
 .feature-box:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
-.feature-icon { width: 72px; height: 72px; background: var(--gradient-light); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 20px; }
+.feature-icon { width: 72px; height: 72px; background: var(--gradient-light); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; padding: 16px; }
+.feature-icon img { width: 100%; height: 100%; object-fit: contain; }
 .feature-box h3 { font-size: 1.15rem; margin-bottom: 12px; }
 .feature-box p { font-size: 0.95rem; color: var(--text-light); }
 
@@ -272,25 +274,25 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height:
                 </div>
                 <div class="products-grid">
                     <div class="product-card animate-on-scroll delay-100">
-                        <div class="product-icon">🎯</div>
+                        <div class="product-icon"><img src="/images/ai-brain-lightbulb.svg" alt="Compass"></div>
                         <h3>Compass</h3>
                         <p>Turn scattered documentation into instant, policy-aligned answers. Empower staff to work smarter, faster, and always in compliance with your internal knowledge assistant.</p>
                         <a href="/compass/" class="product-link">Learn More →</a>
                     </div>
                     <div class="product-card animate-on-scroll delay-200">
-                        <div class="product-icon">📞</div>
+                        <div class="product-icon"><img src="/images/ai-audio-support.svg" alt="Virtual Banker"></div>
                         <h3>Virtual Banker</h3>
                         <p>Handle everyday banking calls with AI that resolves account questions, processes transactions, and delivers 24/7 support so your team can focus on higher-value needs.</p>
                         <a href="/virtual-banker/" class="product-link">Learn More →</a>
                     </div>
                     <div class="product-card animate-on-scroll delay-300">
-                        <div class="product-icon">🔄</div>
+                        <div class="product-icon"><img src="/images/ai-chip-sync.svg" alt="Conversion Concierge"></div>
                         <h3>Conversion Concierge</h3>
                         <p>Support digital and core banking conversions with AI that resolves issues in real time, reduces call volume, and guides customers through change with confidence.</p>
                         <a href="/conversion-concierge/" class="product-link">Learn More →</a>
                     </div>
                     <div class="product-card animate-on-scroll delay-400">
-                        <div class="product-icon">📱</div>
+                        <div class="product-icon"><img src="/images/ai-system-sync-monitor.svg" alt="Touchtone Banker"></div>
                         <h3>Touchtone Banker</h3>
                         <p>Traditional IVR keypad solution for secure self-service, giving customers fast access to account info while easing call volume and supporting high-frequency banking tasks.</p>
                         <a href="/touchtone-banker/" class="product-link">Learn More →</a>
@@ -309,32 +311,32 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height:
                 </div>
                 <div class="features-grid">
                     <div class="feature-box animate-on-scroll delay-100">
-                        <div class="feature-icon">🔒</div>
+                        <div class="feature-icon"><img src="/images/asset-document-shield-lock.svg" alt="Security"></div>
                         <h3>Private Cloud Infrastructure</h3>
                         <p>Your data stays yours. No third-party AI training on your conversations. SOC 2 compliant with examiner-grade audit logs.</p>
                     </div>
                     <div class="feature-box animate-on-scroll delay-200">
-                        <div class="feature-icon">⚡</div>
+                        <div class="feature-icon"><img src="/images/ai-dual-gears.svg" alt="Integration"></div>
                         <h3>Core Integration</h3>
                         <p>Direct API connections to major core banking systems for real-time account access, balance inquiries, and transaction processing.</p>
                     </div>
                     <div class="feature-box animate-on-scroll delay-300">
-                        <div class="feature-icon">📊</div>
+                        <div class="feature-icon"><img src="/images/chart-document-data.svg" alt="Analytics"></div>
                         <h3>Real-Time Analytics</h3>
                         <p>Monitor performance, track automation rates, and gain insights into member needs with comprehensive dashboards and reporting.</p>
                     </div>
                     <div class="feature-box animate-on-scroll delay-100">
-                        <div class="feature-icon">🎙️</div>
+                        <div class="feature-icon"><img src="/images/ai-audio-support.svg" alt="Natural Language"></div>
                         <h3>Natural Language AI</h3>
                         <p>Members speak naturally. Our AI understands intent, handles complex requests, and knows when to seamlessly escalate to your team.</p>
                     </div>
                     <div class="feature-box animate-on-scroll delay-200">
-                        <div class="feature-icon">✅</div>
+                        <div class="feature-icon"><img src="/images/ai-task-checklist.svg" alt="Compliance"></div>
                         <h3>Compliance Built-In</h3>
                         <p>Every interaction follows your policies. AI responses are governed, auditable, and aligned with regulatory requirements.</p>
                     </div>
                     <div class="feature-box animate-on-scroll delay-300">
-                        <div class="feature-icon">🚀</div>
+                        <div class="feature-icon"><img src="/images/ai-lightbulb-gears.svg" alt="Deployment"></div>
                         <h3>Fast Deployment</h3>
                         <p>Go live in weeks, not months. Our team handles integration, training, and optimization so you see results quickly.</p>
                     </div>
