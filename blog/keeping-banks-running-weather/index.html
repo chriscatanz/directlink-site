@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keeping Banks Running When Weather Strikes | Directlink Blog</title>
+    <meta name="description" content="How United Bank of Georgia used Virtual Banker to handle 1,200+ calls during a weather emergency while keeping employees safe.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+:root { --primary: #092B49; --secondary: #A62B9F; --gradient-primary: linear-gradient(135deg, #092B49 0%, #A62B9F 100%); --gradient-light: linear-gradient(135deg, rgba(9,43,73,0.05) 0%, rgba(166,43,159,0.05) 100%); --text-dark: #1e1e2d; --text-body: #5a5a72; --text-light: #8a8aa3; --bg-section: #f7f8fc; --white: #ffffff; --shadow-md: 0 8px 30px rgba(0,0,0,0.08); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Manrope', sans-serif; color: var(--text-body); line-height: 1.8; background: var(--white); }
+h1, h2, h3, h4 { font-weight: 700; color: var(--text-dark); line-height: 1.3; }
+.container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+a { color: var(--secondary); }
+.header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1000; width: calc(100% - 60px); max-width: 1200px; }
+.header-pill { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); border-radius: 100px; padding: 12px 16px 12px 32px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+.logo { font-size: 1.5rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+.nav-link { text-decoration: none; font-weight: 500; font-size: 0.9rem; color: var(--text-body); padding: 10px 18px; border-radius: 50px; transition: all 0.3s; }
+.btn { display: inline-flex; padding: 12px 28px; font-weight: 600; font-size: 0.9rem; text-decoration: none; border-radius: 50px; background: var(--gradient-primary); color: white; }
+/* Dropdown */
+.nav-dropdown { position: relative; }
+.nav-dropdown-trigger { cursor: pointer; display: flex; align-items: center; gap: 4px; }
+.nav-dropdown-trigger::after { content: ''; border: solid currentColor; border-width: 0 2px 2px 0; padding: 3px; transform: rotate(45deg); margin-top: -3px; transition: transform 0.3s; }
+.nav-dropdown:hover .nav-dropdown-trigger::after { transform: rotate(-135deg); margin-top: 3px; }
+.nav-dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); padding: 12px; min-width: 240px; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 100; }
+.nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.nav-dropdown-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #5a5a72; transition: all 0.2s; }
+.nav-dropdown-item:hover { background: #f7f8fc; color: #092B49; }
+.nav-dropdown-icon { width: 36px; height: 36px; background: linear-gradient(135deg, rgba(9,43,73,0.05) 0%, rgba(166,43,159,0.05) 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 8px; }
+.nav-dropdown-icon img { width: 100%; height: 100%; }
+.nav-dropdown-text strong { display: block; font-size: 0.9rem; color: #1e1e2d; }
+.nav-dropdown-text span { font-size: 0.8rem; color: #8a8aa3; }
+.nav-menu { display: flex; align-items: center; gap: 8px; }
+.article-header { padding: 160px 0 60px; background: var(--bg-section); }
+.breadcrumb { font-size: 0.9rem; margin-bottom: 24px; }
+.breadcrumb a { color: var(--text-light); text-decoration: none; }
+.article-header h1 { font-size: 2.5rem; margin-bottom: 20px; line-height: 1.2; }
+.article-meta { display: flex; gap: 24px; color: var(--text-light); font-size: 0.95rem; }
+.article-content { padding: 60px 0 100px; }
+.article-content p { margin-bottom: 24px; font-size: 1.05rem; }
+.article-content h2 { font-size: 1.6rem; margin: 48px 0 20px; }
+.article-content h3 { font-size: 1.3rem; margin: 36px 0 16px; }
+.article-content ul, .article-content ol { margin: 0 0 24px 24px; }
+.article-content li { margin-bottom: 12px; }
+.article-content blockquote { border-left: 4px solid var(--secondary); padding-left: 24px; margin: 32px 0; font-style: italic; color: var(--text-dark); }
+.stat-box { display: flex; gap: 24px; flex-wrap: wrap; margin: 32px 0; }
+.stat-item { background: var(--bg-section); padding: 24px; border-radius: 16px; text-align: center; flex: 1; min-width: 150px; }
+.stat-value { font-size: 2rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.stat-label { font-size: 0.9rem; color: var(--text-light); }
+.cta-box { background: var(--bg-section); border-radius: 20px; padding: 40px; text-align: center; margin-top: 60px; }
+.cta-box h3 { margin-bottom: 16px; }
+.cta-box p { margin-bottom: 24px; color: var(--text-light); }
+.footer { background: #000; padding: 60px 0 40px; color: rgba(255,255,255,0.6); text-align: center; }
+.footer .logo { background: none; -webkit-text-fill-color: white; margin-bottom: 20px; display: inline-block; }
+@media (max-width: 768px) { .article-header { padding: 140px 0 40px; } .article-header h1 { font-size: 1.8rem; } .nav-menu { display: none; } }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-pill">
+            <a href="/" class="logo">Directlink</a>
+            <nav class="nav-menu">
+                <div class="nav-dropdown">
+                    <span class="nav-link nav-dropdown-trigger">Solutions</span>
+                    <div class="nav-dropdown-menu">
+                        <a href="/compass/" class="nav-dropdown-item">
+                            <div class="nav-dropdown-icon"><img src="/images/ai-brain-lightbulb.svg" alt=""></div>
+                            <div class="nav-dropdown-text"><strong>Compass</strong><span>Internal knowledge assistant</span></div>
+                        </a>
+                        <a href="/virtual-banker/" class="nav-dropdown-item">
+                            <div class="nav-dropdown-icon"><img src="/images/ai-audio-support.svg" alt=""></div>
+                            <div class="nav-dropdown-text"><strong>Virtual Banker</strong><span>AI phone banking</span></div>
+                        </a>
+                        <a href="/conversion-concierge/" class="nav-dropdown-item">
+                            <div class="nav-dropdown-icon"><img src="/images/ai-chip-sync.svg" alt=""></div>
+                            <div class="nav-dropdown-text"><strong>Conversion Concierge</strong><span>Migration support</span></div>
+                        </a>
+                        <a href="/touchtone-banker/" class="nav-dropdown-item">
+                            <div class="nav-dropdown-icon"><img src="/images/ai-system-sync-monitor.svg" alt=""></div>
+                            <div class="nav-dropdown-text"><strong>Touchtone Banker</strong><span>Traditional IVR</span></div>
+                        </a>
+                    </div>
+                </div>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/blog/" class="nav-link">Blog</a>
+                <a href="/contact/" class="nav-link">Contact</a>
+            </nav>
+            <a href="/contact/" class="btn">Request Demo</a>
+        </div>
+    </header>
+
+    <section class="article-header">
+        <div class="container">
+            <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → Case Study</div>
+            <h1>Keeping Banks Running When Weather Strikes</h1>
+            <div class="article-meta">
+                <span>January 15, 2025</span>
+                <span>Case Study: United Bank of Georgia</span>
+            </div>
+        </div>
+    </section>
+
+    <article class="article-content">
+        <div class="container">
+            <p>When severe weather strikes, community banks and credit unions face tough decisions: prioritize safety or keep operations running? Thanks to Directlink's Virtual Banker, United Bank of Georgia didn't have to choose.</p>
+            
+            <p>During last week's snow and ice event, the bank confidently closed its Call Center, allowing employees to stay safe at home, while the Virtual Banker seamlessly handled over 1,200 calls in a single day.</p>
+
+            <div class="stat-box">
+                <div class="stat-item">
+                    <div class="stat-value">1,200+</div>
+                    <div class="stat-label">Calls Handled</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Setup Steps</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">IT Support Needed</div>
+                </div>
+            </div>
+
+            <h2>Balancing Safety and Service</h2>
+            <p>For United Bank of Georgia, ensuring the safety of employees was a top priority during the unexpected winter storm. By leveraging Directlink's Virtual Banker, the bank ensured that customer service never faltered. Customers continued to receive real-time assistance with their inquiries, even as human representatives stayed off the icy roads.</p>
+
+            <blockquote>"Our Virtual Banker allowed us to keep our Call Center closed during last week's snow and ice event, ensuring our employees could stay safe at home. She handled over 1,200 calls that day with ease!"<br><br>— Lori Tucker, Chief Experience Officer, United Bank of Georgia</blockquote>
+
+            <h2>How United Bank Achieved It in Only 5 Steps</h2>
+            <p>Using Directlink's Campaign Dialog feature, United Bank was able to quickly adapt to the weather conditions through a fully self-service approach:</p>
+
+            <ol>
+                <li>Provided the dates and times the campaign would be live in their phone system</li>
+                <li>Activated the campaign to make it available immediately</li>
+                <li>Applied a variable greeting to inform customers about the early closure due to the weather</li>
+                <li>Saved and published that greeting through Directlink's content publication pipeline</li>
+                <li>Adjusted hours of operation temporarily to reflect the winter storm</li>
+            </ol>
+
+            <p>All of this was accomplished through Directlink's intuitive content management portal, without needing to involve Directlink or their internal technical support.</p>
+
+            <h2>Seamless Technology, Human-Centered Results</h2>
+            <p>The success of the Virtual Banker goes beyond just call handling. It's about enabling community banks and credit unions to adapt without sacrificing customer satisfaction. For United Bank of Georgia, this meant keeping their employees safe while still meeting the needs of their customers.</p>
+
+            <p>By taking on routine tasks, Virtual Banker not only ensured uninterrupted service during the storm but also empowered human team members to focus on high-priority matters once the weather cleared.</p>
+
+            <h2>A Proven Solution for Unexpected Challenges</h2>
+            <p>At Directlink, we understand the importance of reliability in all conditions. Whether it's a weather emergency or an unexpected surge in customer needs, Virtual Banker is here to keep community banks and credit unions running smoothly.</p>
+
+            <p>United Bank's experience during the snowstorm is just one example of how Directlink's solutions transform how organizations serve their customers.</p>
+
+            <div class="cta-box">
+                <h3>Ready for Any Weather?</h3>
+                <p>See how Virtual Banker can help your institution maintain service continuity no matter what comes your way.</p>
+                <a href="/contact/" class="btn">Schedule Your Demo →</a>
+            </div>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="container">
+            <span class="logo">Directlink</span>
+            <p>Conversational AI for community banks and credit unions.</p>
+            <p style="margin-top: 40px; font-size: 0.85rem;">© 2026 Directlink. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
