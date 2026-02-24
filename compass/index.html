@@ -243,6 +243,16 @@ a { color: var(--secondary); text-decoration: none; }
 .demo-video-container video::-webkit-media-controls-panel { background: rgba(9,43,73,0.9); }
 .demo-video-caption { margin-top: 20px; font-size: 1rem; color: rgba(255,255,255,0.6); font-style: italic; }
 
+/* Demo Modal */
+.demo-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s; }
+.demo-modal-overlay.active { opacity: 1; visibility: visible; }
+.demo-modal { background: white; border-radius: 24px; width: 90%; max-width: 900px; max-height: 90vh; overflow: hidden; transform: scale(0.9) translateY(20px); transition: transform 0.3s; position: relative; }
+.demo-modal-overlay.active .demo-modal { transform: scale(1) translateY(0); }
+.demo-modal-close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: var(--bg-section); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--text-body); transition: all 0.3s; z-index: 10; line-height: 1; }
+.demo-modal-close:hover { background: var(--primary); color: white; }
+.demo-modal-content { min-height: 650px; }
+.demo-modal-content .meetings-iframe-container { height: 650px; }
+
 .cta-section { padding: 100px 0; background: var(--bg-dark); text-align: center; }
 .cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; color: white; }
 .cta-section p { font-size: 1.1rem; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 32px; }
@@ -313,7 +323,7 @@ a { color: var(--secondary); text-decoration: none; }
                 <a href="../blog/" class="nav-link">Blog</a>
                 <a href="../contact/" class="nav-link">Contact</a>
             </nav>
-            <a href="../contact/" class="btn btn-primary">Request Demo</a>
+            <a href="#" onclick="openDemoModal(); return false;" class="btn btn-primary">Request Demo</a>
         </div>
     </header>
 
@@ -325,7 +335,7 @@ a { color: var(--secondary); text-decoration: none; }
                     <h1>Your Fastest Route to <span class="gradient-text">Knowledge</span></h1>
                     <p>Compass replaces scattered documentation with instant, policy-aligned answers. Empower your staff to work smarter, faster, and always in compliance.</p>
                     <div class="hero-buttons">
-                        <a href="../contact/" class="btn btn-primary">Schedule a Demo →</a>
+                        <a href="#" onclick="openDemoModal(); return false;" class="btn btn-primary">Schedule a Demo →</a>
                         <a href="#comparison" class="btn btn-outline">See Comparison</a>
                     </div>
                 </div>
@@ -757,7 +767,7 @@ a { color: var(--secondary); text-decoration: none; }
                         </li>
                     </ul>
                     <div class="pricing-cta">
-                        <a href="../contact/" class="btn btn-primary">Start 3-Month Trial →</a>
+                        <a href="#" onclick="openDemoModal(); return false;" class="btn btn-primary">Start 3-Month Trial →</a>
                     </div>
                 </div>
                 <div class="pricing-info">
@@ -896,11 +906,22 @@ a { color: var(--secondary); text-decoration: none; }
             <h2>Ready to Empower Your Team?</h2>
             <p>See how Compass can transform how your staff finds answers and stays compliant.</p>
             <div class="cta-buttons">
-                <a href="../contact/" class="btn btn-primary">Schedule Your Demo →</a>
+                <a href="#" onclick="openDemoModal(); return false;" class="btn btn-primary">Schedule Your Demo →</a>
                 <a href="../blog/" class="btn btn-outline">Read Case Studies</a>
             </div>
         </div>
     </section>
+
+    <!-- Demo Modal -->
+    <div class="demo-modal-overlay" id="demoModal" onclick="closeDemoModal(event)">
+        <div class="demo-modal" onclick="event.stopPropagation()">
+            <button class="demo-modal-close" onclick="closeDemoModal()">&times;</button>
+            <div class="demo-modal-content">
+                <div class="meetings-iframe-container" data-src="https://hello.directlink.ai/meetings/chris-catanzarite/directlink-demo-calendar?embed=true"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
 
     <footer class="footer">
         <div class="container">
@@ -973,6 +994,17 @@ a { color: var(--secondary); text-decoration: none; }
         const video = overlay.parentElement.querySelector('video');
         overlay.classList.add('hidden');
         video.play();
+    }
+
+    // Demo Modal
+    function openDemoModal() {
+        document.getElementById('demoModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeDemoModal(event) {
+        if (event && event.target !== event.currentTarget) return;
+        document.getElementById('demoModal').classList.remove('active');
+        document.body.style.overflow = '';
     }
     </script>
 </body>
