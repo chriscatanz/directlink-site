@@ -13,6 +13,7 @@
     --primary: #092B49;
     --secondary: #A62B9F;
     --gradient-primary: linear-gradient(135deg, #092B49 0%, #A62B9F 100%);
+    --gradient-secondary: linear-gradient(135deg, #A62B9F 0%, #6366f1 100%);
     --gradient-light: linear-gradient(135deg, rgba(9,43,73,0.05) 0%, rgba(166,43,159,0.05) 100%);
     --text-dark: #1e1e2d;
     --text-body: #5a5a72;
@@ -21,42 +22,49 @@
     --bg-dark: #0a0a1a;
     --white: #ffffff;
     --border: rgba(0,0,0,0.08);
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
     --shadow-md: 0 8px 30px rgba(0,0,0,0.08);
     --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Manrope', sans-serif; color: var(--text-body); line-height: 1.7; background: var(--white); }
-h1, h2, h3, h4 { font-weight: 700; color: var(--text-dark); line-height: 1.3; }
+h1, h2, h3, h4, h5 { font-weight: 700; color: var(--text-dark); line-height: 1.3; }
 .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
 a { color: var(--secondary); text-decoration: none; }
 
+/* Header */
 .header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1000; width: calc(100% - 60px); max-width: 1200px; }
 .header-pill { position: relative; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); border-radius: 100px; padding: 12px 16px 12px 32px; box-shadow: 0 4px 24px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.5); overflow: visible; }
-.logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; display: flex; align-items: center; text-decoration: none; } .logo img { height: 34px; width: auto; display: block; }
+.logo { display: flex; align-items: center; text-decoration: none; }
+.logo img { height: 34px; width: auto; display: block; }
+.nav-menu { display: flex; align-items: center; gap: 8px; margin-left: 40px; }
+.nav-link { text-decoration: none; font-weight: 500; font-size: 0.9rem; color: var(--text-body); padding: 10px 18px; border-radius: 50px; transition: all 0.3s; }
+.nav-link:hover { color: var(--primary); background: rgba(9,43,73,0.05); }
 .btn { display: inline-flex; align-items: center; padding: 12px 28px; font-weight: 600; font-size: 0.9rem; text-decoration: none; border-radius: 50px; transition: all 0.3s; }
 .btn-primary { background: var(--gradient-primary); color: white; }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(166,43,159,0.4); }
 .btn-outline { border: 2px solid var(--primary); color: var(--primary); }
 .btn-outline:hover { background: var(--primary); color: white; }
 
-/* Dropdown */
-.nav-dropdown { position: relative; }
+/* Mega Menu */
+.nav-dropdown { position: static; }
 .nav-dropdown-trigger { cursor: pointer; display: flex; align-items: center; gap: 4px; }
 .nav-dropdown-trigger::after { content: ''; border: solid var(--text-body); border-width: 0 2px 2px 0; padding: 3px; transform: rotate(45deg); margin-top: -3px; transition: transform 0.3s; }
-.nav-dropdown:hover .nav-dropdown-trigger::after { transform: rotate(-135deg); margin-top: 3px; } /* Mega Menu */.nav-dropdown { position: static; } .nav-dropdown:hover .nav-dropdown-trigger { color: var(--secondary); } .nav-dropdown:hover .nav-dropdown-trigger::after { transform: rotate(-135deg); margin-top: 3px; border-color: var(--secondary); } .mega-menu { position: absolute; top: 100%; left: 0; right: 0; background: white; border-radius: 0 0 24px 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); padding: 24px 32px; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 100; margin-top: 12px; } .nav-dropdown:hover .mega-menu { opacity: 1; visibility: visible; margin-top: 0; } .mega-menu-grid { display: flex; justify-content: space-between; gap: 16px; } .mega-menu-item { display: flex; align-items: center; gap: 12px; padding: 16px; border-radius: 12px; text-decoration: none; color: var(--text-body); transition: all 0.3s; flex: 1; white-space: nowrap; } .mega-menu-item:hover { background: var(--bg-section); } .mega-menu-icon { width: 40px; height: 40px; background: var(--gradient-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 8px; flex-shrink: 0; } .mega-menu-icon img { width: 100%; height: 100%; object-fit: contain; } .mega-menu-item:hover .mega-menu-icon { background: var(--gradient-primary); } .mega-menu-item:hover .mega-menu-icon img { filter: brightness(0) invert(1); } .mega-menu-text strong { display: block; font-size: 0.9rem; color: var(--text-dark); font-weight: 700; } .mega-menu-text span { font-size: 0.75rem; color: var(--text-light); }
-.nav-dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); padding: 12px; min-width: 240px; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 100; }
-.nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-.nav-dropdown-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: var(--text-body); transition: all 0.2s; }
-.nav-dropdown-item:hover { background: var(--bg-section); color: var(--primary); }
-.nav-dropdown-icon { width: 36px; height: 36px; background: var(--gradient-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 8px; }
-.nav-dropdown-icon img { width: 100%; height: 100%; }
-.nav-dropdown-text strong { display: block; font-size: 0.9rem; color: var(--text-dark); }
-.nav-dropdown-text span { font-size: 0.8rem; color: var(--text-light); }
-.nav-menu { margin-left: 40px; display: flex; align-items: center; gap: 8px; }
-.nav-link { text-decoration: none; font-weight: 500; font-size: 0.9rem; color: var(--text-body); padding: 10px 18px; border-radius: 50px; transition: all 0.3s; }
-.nav-link:hover { color: var(--primary); background: rgba(9,43,73,0.05); }
-.btn-white { background: white; color: var(--primary); }
+.nav-dropdown:hover .nav-dropdown-trigger { color: var(--secondary); }
+.nav-dropdown:hover .nav-dropdown-trigger::after { transform: rotate(-135deg); margin-top: 3px; border-color: var(--secondary); }
+.mega-menu { position: absolute; top: 100%; left: 0; right: 0; background: white; border-radius: 0 0 24px 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); padding: 24px 32px; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 100; margin-top: 12px; }
+.nav-dropdown:hover .mega-menu { opacity: 1; visibility: visible; margin-top: 0; }
+.mega-menu-grid { display: flex; justify-content: space-between; gap: 16px; }
+.mega-menu-item { display: flex; align-items: center; gap: 12px; padding: 16px; border-radius: 12px; text-decoration: none; color: var(--text-body); transition: all 0.3s; flex: 1; white-space: nowrap; }
+.mega-menu-item:hover { background: var(--bg-section); }
+.mega-menu-icon { width: 40px; height: 40px; background: var(--gradient-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 8px; flex-shrink: 0; }
+.mega-menu-icon img { width: 100%; height: 100%; object-fit: contain; }
+.mega-menu-item:hover .mega-menu-icon { background: var(--gradient-primary); }
+.mega-menu-item:hover .mega-menu-icon img { filter: brightness(0) invert(1); }
+.mega-menu-text strong { display: block; font-size: 0.9rem; color: var(--text-dark); font-weight: 700; }
+.mega-menu-text span { font-size: 0.75rem; color: var(--text-light); }
 
+/* Hero */
 .hero { padding: 160px 0 100px; background: linear-gradient(180deg, #f0f4f8 0%, #ffffff 100%); }
 .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: white; border-radius: 50px; font-size: 0.85rem; font-weight: 600; color: var(--text-dark); margin-bottom: 24px; box-shadow: var(--shadow-md); }
@@ -68,6 +76,7 @@ a { color: var(--secondary); text-decoration: none; }
 .hero-stat-value { font-size: 2rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .hero-stat-label { font-size: 0.9rem; color: var(--text-light); }
 
+/* Phone Mockup */
 .hero-visual { position: relative; }
 .phone-mockup { background: var(--primary); border-radius: 40px; padding: 16px; max-width: 320px; margin: 0 auto; box-shadow: var(--shadow-lg); }
 .phone-screen { background: white; border-radius: 28px; padding: 24px 20px; min-height: 400px; }
@@ -84,6 +93,7 @@ a { color: var(--secondary); text-decoration: none; }
 @keyframes waveform { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.5); } }
 .phone-transcript { background: var(--bg-section); border-radius: 12px; padding: 16px; font-size: 0.9rem; color: var(--text-body); }
 
+/* Sections */
 .section { padding: 100px 0; }
 .section-dark { background: var(--bg-dark); color: white; }
 .section-dark h2, .section-dark h3 { color: white; }
@@ -96,66 +106,132 @@ a { color: var(--secondary); text-decoration: none; }
 .section-subtitle { font-size: 1.1rem; color: var(--text-light); }
 .section-dark .section-subtitle { color: rgba(255,255,255,0.6); }
 
+/* Flip Cards */
 .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-.feature-card { background: white; border-radius: 20px; padding: 36px 28px; box-shadow: var(--shadow-md); border: 1px solid var(--border); transition: all 0.4s; }
-.feature-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
-.feature-icon { width: 56px; height: 56px; background: var(--gradient-light); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; }
-.feature-card h3 { font-size: 1.15rem; margin-bottom: 12px; }
-.feature-card p { font-size: 0.95rem; color: var(--text-light); }
+.flip-card { perspective: 1000px; height: 220px; }
+.flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
+.flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px 24px; text-align: center; }
+.flip-card-front { background: white; box-shadow: var(--shadow-sm); border: 1px solid var(--border); }
+.flip-card-front .feature-icon { width: 56px; height: 56px; background: var(--gradient-light); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; padding: 12px; }
+.flip-card-front .feature-icon img { width: 100%; height: 100%; object-fit: contain; }
+.flip-card-front h3 { font-size: 1.05rem; color: var(--text-dark); margin: 0; }
+.flip-card-back { background: var(--gradient-primary); color: white; transform: rotateY(180deg); }
+.flip-card-back p { font-size: 0.9rem; line-height: 1.6; margin: 0; }
 
-.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.stat-card { text-align: center; padding: 40px 20px; background: rgba(255,255,255,0.05); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
-.stat-value { font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #06b6d4, #A62B9F); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.stat-label { font-size: 0.95rem; color: rgba(255,255,255,0.6); margin-top: 8px; }
+/* Stats Row */
+.stats-row { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+.stat-item { text-align: center; padding: 40px 32px; background: white; border-radius: 24px; box-shadow: var(--shadow-md); border: 1px solid var(--border); transition: all 0.4s; min-width: 200px; flex: 1; max-width: 260px; }
+.stat-item:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+.stat-number { font-size: 3rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; margin-bottom: 12px; }
+.stat-label { font-size: 1.1rem; color: var(--text-dark); font-weight: 700; }
+.stat-sublabel { font-size: 0.85rem; color: var(--text-light); margin-top: 6px; }
 
-.cta-section { padding: 100px 0; background: var(--bg-section); text-align: center; }
-.cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; }
-.cta-section p { font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin: 0 auto 32px; }
+/* Dark Stats */
+.section-dark .stat-item { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
+.section-dark .stat-number { background: linear-gradient(135deg, #06b6d4, #A62B9F); -webkit-background-clip: text; }
+.section-dark .stat-label { color: white; }
+.section-dark .stat-sublabel { color: rgba(255,255,255,0.6); }
+
+/* How It Works */
+.steps-container { display: flex; justify-content: space-between; position: relative; margin-top: 60px; }
+.step-item { flex: 1; text-align: center; position: relative; padding: 0 20px; }
+.step-item:not(:last-child)::after { content: ''; position: absolute; top: 60px; left: calc(50% + 60px); right: calc(-50% + 60px); height: 3px; background: rgba(255,255,255,0.2); z-index: 1; }
+.step-number { width: 120px; height: 120px; background: rgba(255,255,255,0.1); border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; font-size: 2.5rem; font-weight: 800; color: white; position: relative; z-index: 2; transition: all 0.4s; }
+.step-item:hover .step-number { background: var(--secondary); border-color: var(--secondary); transform: scale(1.1); }
+.step-item h3 { font-size: 1.3rem; margin-bottom: 12px; }
+.step-item p { font-size: 0.95rem; opacity: 0.7; max-width: 280px; margin: 0 auto; }
+
+/* Use Cases Grid */
+.use-cases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.use-case-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px; transition: all 0.3s; }
+.use-case-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-4px); }
+.use-case-card h4 { font-size: 1.1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+.use-case-card p { font-size: 0.95rem; color: rgba(255,255,255,0.7); margin: 0; }
+
+/* FAQ */
+.faq-accordion { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+.faq-item { background: white; border-radius: 16px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); overflow: hidden; transition: all 0.3s; }
+.faq-item:hover { box-shadow: var(--shadow-md); }
+.faq-question { display: flex; justify-content: space-between; align-items: center; padding: 24px 28px; cursor: pointer; gap: 16px; }
+.faq-question h4 { font-size: 1.05rem; color: var(--text-dark); margin: 0; flex: 1; }
+.faq-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--gradient-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; }
+.faq-icon svg { width: 14px; height: 14px; transition: transform 0.3s; }
+.faq-item.active .faq-icon { background: var(--gradient-primary); }
+.faq-item.active .faq-icon svg { transform: rotate(180deg); }
+.faq-item.active .faq-icon svg path { stroke: white; }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+.faq-answer-inner { padding: 0 28px 24px; }
+.faq-answer p { font-size: 0.95rem; color: var(--text-light); line-height: 1.8; margin: 0; }
+.faq-item.active .faq-answer { max-height: 300px; }
+
+/* CTA */
+.cta-section { padding: 100px 0; background: var(--bg-dark); text-align: center; }
+.cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; color: white; }
+.cta-section p { font-size: 1.1rem; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 32px; }
 .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.cta-buttons .btn-outline { border-color: rgba(255,255,255,0.4); color: white; }
+.cta-buttons .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
 
+/* Demo Modal */
+.demo-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s; }
+.demo-modal-overlay.active { opacity: 1; visibility: visible; }
+.demo-modal { background: white; border-radius: 24px; width: 90%; max-width: 900px; max-height: 90vh; overflow: hidden; transform: scale(0.9) translateY(20px); transition: transform 0.3s; position: relative; }
+.demo-modal-overlay.active .demo-modal { transform: scale(1) translateY(0); }
+.demo-modal-close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: var(--bg-section); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--text-body); transition: all 0.3s; z-index: 10; line-height: 1; }
+.demo-modal-close:hover { background: var(--primary); color: white; }
+.demo-modal-content { min-height: 650px; }
+.demo-modal-content .meetings-iframe-container { height: 650px; }
+
+/* Footer */
 .footer { background: #000; padding: 60px 0 40px; color: rgba(255,255,255,0.6); text-align: center; }
-.footer .logo { background: none; -webkit-text-fill-color: white; margin-bottom: 20px; display: inline-block; }
 
+/* Responsive */
 @media (max-width: 1024px) {
     .hero-grid { grid-template-columns: 1fr; text-align: center; }
     .hero-buttons { justify-content: center; }
     .hero-stats { justify-content: center; }
     .hero-visual { margin-top: 40px; }
     .features-grid { grid-template-columns: 1fr; }
-    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .use-cases-grid { grid-template-columns: 1fr; }
+    .steps-container { flex-direction: column; gap: 40px; }
+    .step-item::after { display: none; }
+    .nav-menu { display: none; }
 }
 @media (max-width: 768px) {
     .hero { padding: 140px 0 60px; }
     .hero h1 { font-size: 2.2rem; }
     .section-title { font-size: 2rem; }
-    .stats-row { grid-template-columns: 1fr; }
+    .flip-card { height: 200px; }
 }
     </style>
 </head>
 <body>
-        <header class="header">
+    <header class="header">
         <div class="header-pill">
             <a href="../" class="logo"><img src="../images/logo.svg" alt="Directlink"></a>
             <nav class="nav-menu">
                 <div class="nav-dropdown">
                     <span class="nav-link nav-dropdown-trigger">Solutions</span>
-                    <div class="nav-dropdown-menu">
-                        <a href="../compass/" class="nav-dropdown-item">
-                            <div class="nav-dropdown-icon"><img src="../images/ai-brain-lightbulb-gradient.svg" alt=""></div>
-                            <div class="nav-dropdown-text"><strong>Compass</strong><span>Internal knowledge assistant</span></div>
-                        </a>
-                        <a href="../virtual-banker/" class="nav-dropdown-item">
-                            <div class="nav-dropdown-icon"><img src="../images/ai-audio-support-gradient.svg" alt=""></div>
-                            <div class="nav-dropdown-text"><strong>Virtual Banker</strong><span>AI phone banking</span></div>
-                        </a>
-                        <a href="../conversion-concierge/" class="nav-dropdown-item">
-                            <div class="nav-dropdown-icon"><img src="../images/ai-chip-sync-gradient.svg" alt=""></div>
-                            <div class="nav-dropdown-text"><strong>Conversion Concierge</strong><span>Migration support</span></div>
-                        </a>
-                        <a href="../touchtone-banker/" class="nav-dropdown-item">
-                            <div class="nav-dropdown-icon"><img src="../images/ai-system-sync-monitor-gradient.svg" alt=""></div>
-                            <div class="nav-dropdown-text"><strong>Touchtone Banker</strong><span>Traditional IVR</span></div>
-                        </a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-grid">
+                            <a href="../virtual-banker/" class="mega-menu-item">
+                                <div class="mega-menu-icon"><img src="../images/ai-audio-support-gradient.svg" alt=""></div>
+                                <div class="mega-menu-text"><strong>Virtual Banker</strong><span>AI Phone Banking</span></div>
+                            </a>
+                            <a href="../compass/" class="mega-menu-item">
+                                <div class="mega-menu-icon"><img src="../images/ai-brain-lightbulb-gradient.svg" alt=""></div>
+                                <div class="mega-menu-text"><strong>Compass</strong><span>AI Internal Assistant</span></div>
+                            </a>
+                            <a href="../conversion-concierge/" class="mega-menu-item">
+                                <div class="mega-menu-icon"><img src="../images/ai-chip-sync-gradient.svg" alt=""></div>
+                                <div class="mega-menu-text"><strong>Conversion Concierge</strong><span>Digital Conversion Assistant</span></div>
+                            </a>
+                            <a href="../touchtone-banker/" class="mega-menu-item">
+                                <div class="mega-menu-icon"><img src="../images/ai-system-sync-monitor-gradient.svg" alt=""></div>
+                                <div class="mega-menu-text"><strong>Touchtone Banker</strong><span>IVR Phone Teller</span></div>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <a href="../about/" class="nav-link">About</a>
@@ -172,10 +248,10 @@ a { color: var(--secondary); text-decoration: none; }
                 <div class="hero-content">
                     <div class="hero-badge">📞 AI Phone Banking</div>
                     <h1>Modern Banking Begins With <span class="gradient-text">Virtual Banker</span></h1>
-                    <p>Handle everyday banking calls with AI that resolves account questions, processes transactions, and delivers 24/7 support so your team can focus on higher-value needs.</p>
+                    <p>Handle everyday banking calls with AI that resolves account questions, processes transactions, and delivers 24/7 support so your team can focus on higher-value member relationships.</p>
                     <div class="hero-buttons">
                         <a href="#" onclick="openDemoModal(); return false;" class="btn btn-primary">Schedule a Demo →</a>
-                        <a href="../#solutions" class="btn btn-outline">Learn More</a>
+                        <a href="#how-it-works" class="btn btn-outline">See How It Works</a>
                     </div>
                     <div class="hero-stats">
                         <div class="hero-stat">
@@ -220,35 +296,130 @@ a { color: var(--secondary); text-decoration: none; }
                 <p class="section-subtitle">Virtual Banker unifies AI-powered phone banking, auto-attendant, and routing into a single solution you control.</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🗣️</div>
-                    <h3>Natural Language</h3>
-                    <p>Members speak naturally. "I want to check my balance" or "I need fraud help" are understood instantly.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="feature-icon"><img src="../images/chatbot-conversation-gradient.svg" alt=""></div>
+                            <h3>Natural Language</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Members speak naturally. "Check my balance" or "I need fraud help" are understood instantly without navigating menus.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Keypad Support</h3>
-                    <p>Supports traditional keypad navigation for members who prefer it. Best of both worlds.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="feature-icon"><img src="../images/ai-system-sync-monitor-gradient.svg" alt=""></div>
+                            <h3>Keypad Support</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Supports traditional keypad navigation for members who prefer it. Best of both worlds in one system.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔐</div>
-                    <h3>Secure Authentication</h3>
-                    <p>Authenticates callers and completes real account tasks where approved by your policies.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="feature-icon"><img src="../images/ai-security-shield-gradient.svg" alt=""></div>
+                            <h3>Secure Authentication</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Authenticates callers and completes real account tasks where approved by your institution's policies.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔀</div>
-                    <h3>Smart Routing</h3>
-                    <p>Routes intelligently based on intent, customer profile, time of day, and your business rules.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="feature-icon"><img src="../images/ai-chip-sync-gradient.svg" alt=""></div>
+                            <h3>Smart Routing</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Routes calls intelligently based on intent, customer profile, time of day, and your business rules.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📋</div>
-                    <h3>Policy-Aligned</h3>
-                    <p>Delivers consistent, compliant messaging shaped by your policies, not a generic model.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="feature-icon"><img src="../images/ai-task-checklist-gradient.svg" alt=""></div>
+                            <h3>Policy-Aligned</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Delivers consistent, compliant messaging shaped by your policies, not a generic model.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Real-Time Analytics</h3>
-                    <p>Monitor performance, track automation rates, and gain insights into member needs.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="feature-icon"><img src="../images/data-visualization-eye-gradient.svg" alt=""></div>
+                            <h3>Real-Time Analytics</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Monitor performance, track automation rates, and gain insights into member needs in real time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Proven Results</span>
+                <h2 class="section-title">Measurable Impact</h2>
+                <p class="section-subtitle">Real results from community banks and credit unions using Virtual Banker.</p>
+            </div>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="35" data-suffix="%">0%</div>
+                    <div class="stat-label">Calls Automated</div>
+                    <div class="stat-sublabel">Routine inquiries handled</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="30" data-suffix="%">0%</div>
+                    <div class="stat-label">Reduced Wait Times</div>
+                    <div class="stat-sublabel">Faster member service</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="24" data-suffix="/7">0</div>
+                    <div class="stat-label">Always Available</div>
+                    <div class="stat-sublabel">No after-hours gaps</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="90" data-suffix="%+">0%</div>
+                    <div class="stat-label">Member Satisfaction</div>
+                    <div class="stat-sublabel">Post-call survey scores</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="section section-dark" style="background-color: #112240;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">How It Works</span>
+                <h2 class="section-title">From Call to Resolution</h2>
+                <p class="section-subtitle">Virtual Banker handles calls end-to-end with AI that understands context and delivers answers.</p>
+            </div>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <h3>Member Calls</h3>
+                    <p>Member calls your main line. Virtual Banker answers instantly, 24/7.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <h3>AI Understands</h3>
+                    <p>Natural language processing identifies intent: balance check, transfer, fraud report, etc.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <h3>Secure Action</h3>
+                    <p>Authenticates the caller and completes the request or routes to the right team.</p>
                 </div>
             </div>
         </div>
@@ -257,26 +428,110 @@ a { color: var(--secondary); text-decoration: none; }
     <section class="section section-dark">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">Results</span>
-                <h2 class="section-title">Proven Impact</h2>
-                <p class="section-subtitle">Real results from community banks and credit unions using Virtual Banker.</p>
+                <span class="section-label">Use Cases</span>
+                <h2 class="section-title">What Members Can Do</h2>
+                <p class="section-subtitle">Common requests Virtual Banker handles every day.</p>
             </div>
-            <div class="stats-row">
-                <div class="stat-card">
-                    <div class="stat-value">35%</div>
-                    <div class="stat-label">Calls Automated</div>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <h4>💰 Account Balances</h4>
+                    <p>"What's my checking balance?" Get real-time balances across all accounts instantly.</p>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value">30%</div>
-                    <div class="stat-label">Reduced Wait Times</div>
+                <div class="use-case-card">
+                    <h4>📜 Recent Transactions</h4>
+                    <p>"What were my last 5 transactions?" Hear recent activity without waiting for a rep.</p>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value">24/7</div>
-                    <div class="stat-label">Service Availability</div>
+                <div class="use-case-card">
+                    <h4>💸 Transfer Funds</h4>
+                    <p>"Transfer $200 from savings to checking." Move money between accounts securely.</p>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value">90%+</div>
-                    <div class="stat-label">Member Satisfaction</div>
+                <div class="use-case-card">
+                    <h4>🔒 Report Lost Card</h4>
+                    <p>"I lost my debit card." Instantly lock the card and order a replacement.</p>
+                </div>
+                <div class="use-case-card">
+                    <h4>📍 Branch & ATM Locator</h4>
+                    <p>"Where's the nearest branch?" Get location, hours, and directions.</p>
+                </div>
+                <div class="use-case-card">
+                    <h4>📞 Smart Routing</h4>
+                    <p>"I need to talk to someone about a loan." Routes to the right department instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">FAQ</span>
+                <h2 class="section-title">Common Questions</h2>
+            </div>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4>How does Virtual Banker integrate with our core system?</h4>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#092B49" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Virtual Banker integrates via secure APIs with major core banking systems including Jack Henry, Fiserv, and FIS. We handle the integration work as part of implementation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4>Can members still reach a live person?</h4>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#092B49" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Absolutely. Members can say "talk to a person" at any time, or Virtual Banker will automatically route complex requests to your team. You control the escalation rules.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4>How secure is the authentication?</h4>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#092B49" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Virtual Banker uses multi-factor voice authentication and knowledge-based verification aligned with your security policies. All interactions are logged for audit compliance.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4>What happens after hours?</h4>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#092B49" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Virtual Banker operates 24/7. After hours, it handles self-service requests and can take messages or schedule callbacks for items requiring staff assistance.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4>How long does implementation take?</h4>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#092B49" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Most implementations complete in 4-6 weeks, including core integration, voice customization, and staff training. We handle the heavy lifting.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -293,7 +548,6 @@ a { color: var(--secondary); text-decoration: none; }
         </div>
     </section>
 
-    
     <!-- Demo Modal -->
     <div class="demo-modal-overlay" id="demoModal" onclick="closeDemoModal(event)">
         <div class="demo-modal" onclick="event.stopPropagation()">
@@ -307,10 +561,56 @@ a { color: var(--secondary); text-decoration: none; }
 
     <footer class="footer">
         <div class="container">
-            <img src="../images/Directlink-Logo-White.svg" alt="Directlink" class="footer-logo" style="height: 30px;">
+            <img src="../images/Directlink-Logo-White.svg" alt="Directlink" style="height: 30px; margin-bottom: 20px;">
             <p>Conversational AI for community banks and credit unions.</p>
             <p style="margin-top: 40px; font-size: 0.85rem;">© 2026 Directlink. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+    // Stat Counter Animation
+    const statObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseInt(el.dataset.target);
+                const prefix = el.dataset.prefix || '';
+                const suffix = el.dataset.suffix || '';
+                let current = 0;
+                const duration = 1500;
+                const step = target / (duration / 16);
+                const counter = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(counter);
+                    }
+                    el.textContent = prefix + Math.floor(current) + suffix;
+                }, 16);
+                statObserver.unobserve(el);
+            }
+        });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stat-number[data-target]').forEach(el => statObserver.observe(el));
+
+    // FAQ Accordion
+    function toggleFaq(element) {
+        const faqItem = element.parentElement;
+        const isActive = faqItem.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+        if (!isActive) faqItem.classList.add('active');
+    }
+
+    // Demo Modal
+    function openDemoModal() {
+        document.getElementById('demoModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeDemoModal(event) {
+        if (event && event.target !== event.currentTarget) return;
+        document.getElementById('demoModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    </script>
 </body>
 </html>
