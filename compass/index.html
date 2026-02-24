@@ -13,6 +13,7 @@
     --primary: #092B49;
     --secondary: #A62B9F;
     --gradient-primary: linear-gradient(135deg, #092B49 0%, #A62B9F 100%);
+    --gradient-secondary: linear-gradient(135deg, #A62B9F 0%, #6366f1 100%);
     --gradient-light: linear-gradient(135deg, rgba(9,43,73,0.05) 0%, rgba(166,43,159,0.05) 100%);
     --text-dark: #1e1e2d;
     --text-body: #5a5a72;
@@ -27,7 +28,7 @@
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Manrope', sans-serif; color: var(--text-body); line-height: 1.7; background: var(--white); }
-h1, h2, h3, h4 { font-weight: 700; color: var(--text-dark); line-height: 1.3; }
+h1, h2, h3, h4, h5 { font-weight: 700; color: var(--text-dark); line-height: 1.3; }
 .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
 a { color: var(--secondary); text-decoration: none; }
 
@@ -131,10 +132,94 @@ a { color: var(--secondary); text-decoration: none; }
 .chat-carousel-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3); border: none; cursor: pointer; transition: all 0.3s; }
 .chat-carousel-dot.active { background: var(--secondary); transform: scale(1.2); }
 
-.cta-section { padding: 100px 0; background: var(--bg-section); text-align: center; }
-.cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; }
-.cta-section p { font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin: 0 auto 32px; }
+/* Comparison Table */
+.table-wrapper { overflow-x: auto; border-radius: 24px; box-shadow: var(--shadow-lg); }
+.comparison-table { width: 100%; border-collapse: collapse; background: white; }
+.comparison-table th, .comparison-table td { padding: 20px 24px; text-align: center; }
+.comparison-table th { background: var(--primary); color: white; font-weight: 600; font-size: 0.95rem; }
+.comparison-table th:first-child { text-align: left; border-radius: 24px 0 0 0; }
+.comparison-table th:last-child { border-radius: 0 24px 0 0; }
+.comparison-table th.highlight { background: var(--secondary); }
+.comparison-table td:first-child { text-align: left; font-weight: 600; color: var(--text-dark); }
+.comparison-table tbody tr { border-bottom: 1px solid var(--border); }
+.comparison-table tbody tr:hover { background: var(--bg-section); }
+.comparison-table tbody tr:last-child { border-bottom: none; }
+.table-check { color: #10b981; font-weight: bold; font-size: 1.2rem; }
+.table-cross { color: #ef4444; font-weight: bold; font-size: 1.2rem; }
+.table-partial { color: #f59e0b; font-weight: bold; font-size: 1rem; }
+.comparison-desktop { display: block; }
+.comparison-mobile { display: none; }
+.compare-card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: var(--shadow-md); border: 1px solid var(--border); border-left: 4px solid #10b981; }
+.compare-card-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.compare-card-header .compare-check { width: 28px; height: 28px; background: rgba(16,185,129,0.15); color: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; flex-shrink: 0; }
+.compare-card-header h4 { font-size: 1rem; color: var(--text-dark); margin: 0; line-height: 1.4; }
+.compare-card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.compare-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; background: var(--bg-section); border-radius: 8px; font-size: 0.85rem; }
+.compare-item.winner { background: rgba(166,43,159,0.1); border: 1px solid rgba(166,43,159,0.3); }
+.compare-item .label { color: var(--text-light); font-weight: 500; }
+.compare-item.winner .label { color: var(--secondary); font-weight: 700; }
+.compare-item .value { font-weight: 700; }
+.compare-item .value.check { color: #10b981; }
+.compare-item .value.cross { color: #ef4444; font-size: 0.8rem; }
+.compare-item .value.partial { color: #f59e0b; }
+
+/* Pricing */
+.pricing-wrapper { display: flex; gap: 40px; align-items: flex-start; }
+.pricing-card { flex: 1; max-width: 480px; background: white; border-radius: 24px; padding: 48px; box-shadow: var(--shadow-lg); border: 2px solid var(--secondary); position: relative; overflow: hidden; }
+.pricing-card::before { content: '3-MONTH TRIAL'; position: absolute; top: 24px; right: -45px; background: var(--gradient-secondary); color: white; font-size: 0.7rem; font-weight: 700; padding: 8px 55px; transform: rotate(45deg); text-align: center; letter-spacing: 1px; }
+.pricing-header { text-align: center; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+.pricing-header h3 { font-size: 1.5rem; margin-bottom: 8px; }
+.pricing-amount { display: flex; align-items: baseline; justify-content: center; gap: 4px; }
+.pricing-currency { font-size: 1.5rem; font-weight: 700; color: var(--text-dark); }
+.pricing-value { font-size: 4rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+.pricing-period { font-size: 1rem; color: var(--text-light); }
+.pricing-features { list-style: none; margin-bottom: 32px; }
+.pricing-features li { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 1rem; }
+.pricing-features li:last-child { border-bottom: none; }
+.pricing-features .icon { width: 24px; height: 24px; background: rgba(16,185,129,0.15); color: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
+.pricing-features .highlight { font-weight: 700; color: var(--text-dark); }
+.pricing-features .price-tag { margin-left: auto; font-weight: 700; color: var(--secondary); }
+.pricing-cta { text-align: center; }
+.pricing-cta .btn { width: 100%; }
+.pricing-info { flex: 1; }
+.pricing-info h3 { font-size: 1.75rem; margin-bottom: 24px; }
+.token-explainer { background: var(--bg-section); border-radius: 16px; padding: 28px; margin-bottom: 24px; }
+.token-explainer h4 { font-size: 1.1rem; margin-bottom: 12px; color: var(--text-dark); }
+.token-explainer p { font-size: 0.95rem; color: var(--text-body); line-height: 1.7; }
+.token-example { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+.token-example span { padding: 6px 12px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; }
+.token-example .t1 { background: #fef3c7; color: #92400e; }
+.token-example .t2 { background: #dbeafe; color: #1e40af; }
+.token-example .t3 { background: #d1fae5; color: #065f46; }
+.token-example .t4 { background: #fce7f3; color: #9d174d; }
+.token-example .t5 { background: #e0e7ff; color: #3730a3; }
+.token-types { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.token-type-card { background: white; border-radius: 12px; padding: 20px; border: 1px solid var(--border); }
+.token-type-card h5 { font-size: 0.95rem; color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.token-type-card p { font-size: 0.9rem; color: var(--text-light); margin: 0; }
+
+/* FAQ */
+.faq-accordion { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+.faq-item { background: white; border-radius: 16px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); overflow: hidden; transition: all 0.3s; }
+.faq-item:hover { box-shadow: var(--shadow-md); }
+.faq-question { display: flex; justify-content: space-between; align-items: center; padding: 24px 28px; cursor: pointer; gap: 16px; }
+.faq-question h4 { font-size: 1.05rem; color: var(--text-dark); margin: 0; flex: 1; }
+.faq-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--gradient-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; }
+.faq-icon svg { width: 14px; height: 14px; transition: transform 0.3s; }
+.faq-item.active .faq-icon { background: var(--gradient-primary); }
+.faq-item.active .faq-icon svg { transform: rotate(180deg); }
+.faq-item.active .faq-icon svg path { stroke: white; }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+.faq-answer-inner { padding: 0 28px 24px; }
+.faq-answer p { font-size: 0.95rem; color: var(--text-light); line-height: 1.8; margin: 0; }
+.faq-item.active .faq-answer { max-height: 300px; }
+
+.cta-section { padding: 100px 0; background: var(--bg-dark); text-align: center; }
+.cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; color: white; }
+.cta-section p { font-size: 1.1rem; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 32px; }
 .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.cta-buttons .btn-outline { border-color: rgba(255,255,255,0.4); color: white; }
+.cta-buttons .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
 
 .footer { background: #000; padding: 60px 0 40px; color: rgba(255,255,255,0.6); text-align: center; }
 
@@ -144,6 +229,9 @@ a { color: var(--secondary); text-decoration: none; }
     .hero-visual { max-width: 500px; margin: 40px auto 0; }
     .features-grid { grid-template-columns: 1fr; }
     .nav-menu { display: none; }
+    .pricing-wrapper { flex-direction: column; align-items: center; }
+    .pricing-card { max-width: 100%; }
+    .pricing-info { max-width: 100%; }
 }
 @media (max-width: 768px) {
     .hero { padding: 140px 0 60px; }
@@ -154,6 +242,11 @@ a { color: var(--secondary); text-decoration: none; }
     .chat-carousel-btn { width: 40px; height: 40px; }
     .chat-window-body { padding: 20px 16px; min-height: 280px; }
     .chat-bubble { font-size: 0.9rem; padding: 12px 16px; }
+    .comparison-desktop { display: none; }
+    .comparison-mobile { display: block; }
+    .token-types { grid-template-columns: 1fr; }
+    .pricing-card { padding: 48px 24px; }
+    .pricing-header { padding-top: 30px; }
 }
     </style>
 </head>
@@ -200,7 +293,7 @@ a { color: var(--secondary); text-decoration: none; }
                     <p>Compass replaces scattered documentation with instant, policy-aligned answers. Empower your staff to work smarter, faster, and always in compliance.</p>
                     <div class="hero-buttons">
                         <a href="../contact/" class="btn btn-primary">Schedule a Demo →</a>
-                        <a href="../#solutions" class="btn btn-outline">Learn More</a>
+                        <a href="#comparison" class="btn btn-outline">See Comparison</a>
                     </div>
                 </div>
                 <div class="hero-visual">
@@ -309,7 +402,6 @@ a { color: var(--secondary); text-decoration: none; }
             <div class="chat-carousel">
                 <div class="chat-carousel-track">
                     <div class="chat-carousel-slides" id="chatSlides">
-                        <!-- Slide 1: Wire Transfer -->
                         <div class="chat-slide">
                             <div class="chat-window">
                                 <div class="chat-window-header">
@@ -330,7 +422,6 @@ a { color: var(--secondary); text-decoration: none; }
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 2: Fraud Escalation -->
                         <div class="chat-slide">
                             <div class="chat-window">
                                 <div class="chat-window-header">
@@ -351,7 +442,6 @@ a { color: var(--secondary); text-decoration: none; }
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 3: HELOC Requirements -->
                         <div class="chat-slide">
                             <div class="chat-window">
                                 <div class="chat-window-header">
@@ -372,7 +462,6 @@ a { color: var(--secondary); text-decoration: none; }
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 4: BSA Training -->
                         <div class="chat-slide">
                             <div class="chat-window">
                                 <div class="chat-window-header">
@@ -393,7 +482,6 @@ a { color: var(--secondary); text-decoration: none; }
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 5: Complaint Handling -->
                         <div class="chat-slide">
                             <div class="chat-window">
                                 <div class="chat-window-header">
@@ -417,13 +505,309 @@ a { color: var(--secondary); text-decoration: none; }
                     </div>
                 </div>
                 <div class="chat-carousel-nav">
-                    <button class="chat-carousel-btn" id="prevBtn" onclick="moveSlide(-1)">
+                    <button class="chat-carousel-btn" onclick="moveSlide(-1)">
                         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
                     </button>
                     <div class="chat-carousel-dots" id="carouselDots"></div>
-                    <button class="chat-carousel-btn" id="nextBtn" onclick="moveSlide(1)">
+                    <button class="chat-carousel-btn" onclick="moveSlide(1)">
                         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
                     </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section id="comparison" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Compare</span>
+                <h2 class="section-title">See the Difference</h2>
+            </div>
+            <!-- Desktop Table -->
+            <div class="table-wrapper comparison-desktop">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Capability</th>
+                            <th class="highlight">Compass</th>
+                            <th>GPT Enterprise</th>
+                            <th>MS Copilot</th>
+                            <th>Other Solutions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Built for internal employee knowledge</td>
+                            <td><span class="table-check">✓</span></td>
+                            <td><span class="table-cross">✕</span></td>
+                            <td><span class="table-partial">⚠️</span></td>
+                            <td><span class="table-cross">✕</span></td>
+                        </tr>
+                        <tr>
+                            <td>100% private cloud (no third-party AI)</td>
+                            <td><span class="table-check">✓</span></td>
+                            <td><span class="table-cross">✕</span></td>
+                            <td><span class="table-cross">✕</span></td>
+                            <td><span class="table-partial">⚠️</span></td>
+                        </tr>
+                        <tr>
+                            <td>Cites actual source documents</td>
+                            <td><span class="table-check">✓</span></td>
+                            <td><span class="table-cross">✕</span></td>
+                            <td><span class="table-partial">⚠️</span></td>
+                            <td><span class="table-partial">⚠️</span></td>
+                        </tr>
+                        <tr>
+                            <td>Purpose-built for enterprise</td>
+                            <td><span class="table-check">✓</span></td>
+                            <td><span class="table-cross">✕</span></td>
+                            <td><span class="table-cross">✕</span></td>
+                            <td><span class="table-check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Live in under an hour</td>
+                            <td><span class="table-check">✓</span></td>
+                            <td><span class="table-cross">✕</span></td>
+                            <td><span class="table-cross">✕</span></td>
+                            <td><span class="table-cross">✕</span></td>
+                        </tr>
+                        <tr>
+                            <td>Audit-ready interaction logging</td>
+                            <td><span class="table-check">✓</span></td>
+                            <td><span class="table-partial">⚠️</span></td>
+                            <td><span class="table-partial">⚠️</span></td>
+                            <td><span class="table-check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>No per-seat licensing</td>
+                            <td><span class="table-check">✓</span></td>
+                            <td><span class="table-cross">✕ $20/user</span></td>
+                            <td><span class="table-cross">✕ $30/user</span></td>
+                            <td><span class="table-partial">⚠️</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Mobile Cards -->
+            <div class="comparison-mobile">
+                <div class="compare-card">
+                    <div class="compare-card-header">
+                        <span class="compare-check">✓</span>
+                        <h4>Built for internal employee knowledge</h4>
+                    </div>
+                    <div class="compare-card-grid">
+                        <div class="compare-item winner"><span class="label">Compass</span><span class="value check">✓</span></div>
+                        <div class="compare-item"><span class="label">GPT Enterprise</span><span class="value cross">✕</span></div>
+                        <div class="compare-item"><span class="label">MS Copilot</span><span class="value partial">⚠️</span></div>
+                        <div class="compare-item"><span class="label">Others</span><span class="value cross">✕</span></div>
+                    </div>
+                </div>
+                <div class="compare-card">
+                    <div class="compare-card-header">
+                        <span class="compare-check">✓</span>
+                        <h4>100% private cloud (no third-party AI)</h4>
+                    </div>
+                    <div class="compare-card-grid">
+                        <div class="compare-item winner"><span class="label">Compass</span><span class="value check">✓</span></div>
+                        <div class="compare-item"><span class="label">GPT Enterprise</span><span class="value cross">✕</span></div>
+                        <div class="compare-item"><span class="label">MS Copilot</span><span class="value cross">✕</span></div>
+                        <div class="compare-item"><span class="label">Others</span><span class="value partial">⚠️</span></div>
+                    </div>
+                </div>
+                <div class="compare-card">
+                    <div class="compare-card-header">
+                        <span class="compare-check">✓</span>
+                        <h4>No per-seat licensing</h4>
+                    </div>
+                    <div class="compare-card-grid">
+                        <div class="compare-item winner"><span class="label">Compass</span><span class="value check">✓</span></div>
+                        <div class="compare-item"><span class="label">GPT Enterprise</span><span class="value cross">$20/user</span></div>
+                        <div class="compare-item"><span class="label">MS Copilot</span><span class="value cross">$30/user</span></div>
+                        <div class="compare-item"><span class="label">Others</span><span class="value partial">⚠️</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section section-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Pricing</span>
+                <h2 class="section-title">Simple, Transparent Pricing</h2>
+                <p class="section-subtitle">No per-seat licenses. No surprises. Just straightforward usage-based pricing.</p>
+            </div>
+            <div class="pricing-wrapper">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Monthly Platform Fee</h3>
+                        <div class="pricing-amount">
+                            <span class="pricing-currency">$</span>
+                            <span class="pricing-value">200</span>
+                            <span class="pricing-period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <span class="icon">✓</span>
+                            <span class="highlight">Unlimited users</span>
+                            <span class="price-tag">No per-seat cost</span>
+                        </li>
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Input tokens (questions + docs)</span>
+                            <span class="price-tag">$0.02 / 1K</span>
+                        </li>
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Output tokens (AI answers)</span>
+                            <span class="price-tag">$0.08 / 1K</span>
+                        </li>
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Private cloud infrastructure</span>
+                        </li>
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Full audit logging</span>
+                        </li>
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Role-based access controls</span>
+                        </li>
+                    </ul>
+                    <div class="pricing-cta">
+                        <a href="../contact/" class="btn btn-primary">Start 3-Month Trial →</a>
+                    </div>
+                </div>
+                <div class="pricing-info">
+                    <h3>Understanding Token Pricing</h3>
+                    <div class="token-explainer">
+                        <h4>What is a token?</h4>
+                        <p>A token is a small chunk of text that the AI reads and writes. On average, a token is 3-5 letters or characters, so one word is usually 1-2 tokens.</p>
+                        <div class="token-example">
+                            <span class="t1">"What's</span>
+                            <span class="t2">the</span>
+                            <span class="t3">routing</span>
+                            <span class="t4">number</span>
+                            <span class="t5">?"</span>
+                        </div>
+                        <p style="margin-top: 12px; font-size: 0.85rem; color: var(--text-light);">↑ This question is 5 tokens</p>
+                    </div>
+                    <div class="token-types">
+                        <div class="token-type-card">
+                            <h5>📥 Input Tokens</h5>
+                            <p>Everything sent to the AI: your questions plus the documents used to find accurate answers.</p>
+                        </div>
+                        <div class="token-type-card">
+                            <h5>📤 Output Tokens</h5>
+                            <p>Everything the AI writes back: the answers, citations, and explanations you receive.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">FAQ</span>
+                <h2 class="section-title">Common Questions</h2>
+            </div>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4>How quickly can we get started?</h4>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#092B49" stroke-width="2.5" stroke-linecap="round">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Most institutions are live within an hour. Upload your documents, set permissions, and you're ready to go.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4>Where does our data go?</h4>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#092B49" stroke-width="2.5" stroke-linecap="round">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Nowhere. Compass runs in a private cloud infrastructure. Your data never leaves your control or touches third-party AI services.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4>How does Compass prevent hallucinations?</h4>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#092B49" stroke-width="2.5" stroke-linecap="round">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Every answer is grounded in your uploaded documents with source citations. If the answer isn't in your content, Compass says so.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4>What file formats are supported?</h4>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#092B49" stroke-width="2.5" stroke-linecap="round">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>PDF, Word, PowerPoint, Excel, and plain text. We're adding more formats based on customer feedback.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4>Is there per-seat pricing?</h4>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#092B49" stroke-width="2.5" stroke-linecap="round">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>No. We believe everyone in your organization should have access without licensing headaches. Simple, predictable pricing.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4>Can we control who sees what?</h4>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#092B49" stroke-width="2.5" stroke-linecap="round">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Yes. Role-based access controls let you define which teams or individuals can access specific document sets.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -455,7 +839,6 @@ a { color: var(--secondary); text-decoration: none; }
     const totalSlides = slides.length;
     const dotsContainer = document.getElementById('carouselDots');
 
-    // Create dots
     for (let i = 0; i < totalSlides; i++) {
         const dot = document.createElement('button');
         dot.className = 'chat-carousel-dot' + (i === 0 ? ' active' : '');
@@ -464,9 +847,7 @@ a { color: var(--secondary); text-decoration: none; }
     }
 
     function animateSlide(index) {
-        // Remove animation from all bubbles
         document.querySelectorAll('.chat-bubble').forEach(b => b.classList.remove('animate'));
-        // Add animation to current slide's bubbles
         setTimeout(() => {
             slides[index].querySelectorAll('.chat-bubble').forEach(b => b.classList.add('animate'));
         }, 50);
@@ -490,11 +871,24 @@ a { color: var(--secondary); text-decoration: none; }
         updateCarousel();
     }
 
-    // Animate first slide on load
     animateSlide(0);
-
-    // Auto-advance every 6 seconds
     setInterval(() => moveSlide(1), 6000);
+
+    // FAQ Accordion
+    function toggleFaq(element) {
+        const faqItem = element.parentElement;
+        const isActive = faqItem.classList.contains('active');
+        
+        // Close all other FAQs
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Toggle current one
+        if (!isActive) {
+            faqItem.classList.add('active');
+        }
+    }
     </script>
 </body>
 </html>
