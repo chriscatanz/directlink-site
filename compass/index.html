@@ -214,6 +214,28 @@ a { color: var(--secondary); text-decoration: none; }
 .faq-answer p { font-size: 0.95rem; color: var(--text-light); line-height: 1.8; margin: 0; }
 .faq-item.active .faq-answer { max-height: 300px; }
 
+/* How It Works Steps */
+.steps-container { display: flex; justify-content: space-between; position: relative; margin-top: 60px; }
+.step-item { flex: 1; text-align: center; position: relative; padding: 0 20px; }
+.step-item:not(:last-child)::after { content: ''; position: absolute; top: 60px; left: calc(50% + 60px); right: calc(-50% + 60px); height: 3px; background: rgba(255,255,255,0.2); z-index: 1; }
+.step-number { width: 120px; height: 120px; background: rgba(255,255,255,0.1); border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; font-size: 2.5rem; font-weight: 800; color: white; position: relative; z-index: 2; transition: all 0.4s; }
+.step-item:hover .step-number { background: var(--secondary); border-color: var(--secondary); transform: scale(1.1); }
+.step-item h3 { font-size: 1.3rem; margin-bottom: 12px; }
+.step-item p { font-size: 0.95rem; opacity: 0.7; max-width: 280px; margin: 0 auto; }
+
+/* Demo Video */
+.demo-video-wrapper { text-align: center; }
+.demo-video-container { max-width: 900px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: 0 25px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1); background: #000; position: relative; }
+.demo-video-container video { width: 100%; display: block; }
+.video-play-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(9,43,73,0.7); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: opacity 0.3s; }
+.video-play-overlay:hover { background: rgba(9,43,73,0.8); }
+.video-play-overlay.hidden { opacity: 0; pointer-events: none; }
+.video-play-btn { width: 100px; height: 100px; background: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(166,43,159,0.5); transition: transform 0.3s, box-shadow 0.3s; }
+.video-play-overlay:hover .video-play-btn { transform: scale(1.1); box-shadow: 0 15px 50px rgba(166,43,159,0.6); }
+.video-play-btn svg { width: 40px; height: 40px; fill: white; margin-left: 8px; }
+.demo-video-container video::-webkit-media-controls-panel { background: rgba(9,43,73,0.9); }
+.demo-video-caption { margin-top: 20px; font-size: 1rem; color: rgba(255,255,255,0.6); font-style: italic; }
+
 .cta-section { padding: 100px 0; background: var(--bg-dark); text-align: center; }
 .cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; color: white; }
 .cta-section p { font-size: 1.1rem; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 32px; }
@@ -232,6 +254,8 @@ a { color: var(--secondary); text-decoration: none; }
     .pricing-wrapper { flex-direction: column; align-items: center; }
     .pricing-card { max-width: 100%; }
     .pricing-info { max-width: 100%; }
+    .steps-container { flex-direction: column; gap: 40px; }
+    .step-item::after { display: none; }
 }
 @media (max-width: 768px) {
     .hero { padding: 140px 0 60px; }
@@ -513,6 +537,51 @@ a { color: var(--secondary); text-decoration: none; }
                         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
                     </button>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="section section-dark" style="background-color: #112240;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">How It Works</span>
+                <h2 class="section-title">Up and Running in an Hour</h2>
+                <p class="section-subtitle">No complex IT project. No six-month implementation. Just upload, configure, and go.</p>
+            </div>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <h3>Upload Documents</h3>
+                    <p>Upload policies, procedures, training materials, anything you want searchable.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <h3>Set Permissions</h3>
+                    <p>Define which teams or roles can access each document set.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <h3>Ask Compass</h3>
+                    <p>Your team asks questions in plain language and gets instant answers.</p>
+                </div>
+            </div>
+            <!-- Demo Video -->
+            <div class="demo-video-wrapper" style="margin-top: 80px;">
+                <div class="demo-video-container">
+                    <div class="video-play-overlay" onclick="playVideo(this)">
+                        <div class="video-play-btn">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <video controls playsinline poster="https://nqscnwqzejrpjgelvfzu.supabase.co/storage/v1/object/public/Files/compass-icons/video-poster.png" preload="metadata">
+                        <source src="https://hello.directlink.ai/hubfs/Directlink%20(2025-2026)/Compass%20Demo%202_10_26.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <p class="demo-video-caption">See Compass in action: from question to answer in seconds</p>
             </div>
         </div>
     </section>
@@ -888,6 +957,13 @@ a { color: var(--secondary); text-decoration: none; }
         if (!isActive) {
             faqItem.classList.add('active');
         }
+    }
+
+    // Video Player
+    function playVideo(overlay) {
+        const video = overlay.parentElement.querySelector('video');
+        overlay.classList.add('hidden');
+        video.play();
     }
     </script>
 </body>
