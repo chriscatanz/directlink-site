@@ -221,6 +221,14 @@ a { color: var(--secondary); text-decoration: none; }
 .faq-answer p { font-size: 0.95rem; color: var(--text-light); line-height: 1.8; margin: 0; }
 .faq-item.active .faq-answer { max-height: 300px; }
 
+/* Stats Row */
+.stats-row { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+.stat-item { text-align: center; padding: 40px 32px; background: white; border-radius: 24px; box-shadow: var(--shadow-md); border: 1px solid var(--border); transition: all 0.4s; min-width: 200px; flex: 1; max-width: 260px; }
+.stat-item:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+.stat-number { font-size: 3rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; margin-bottom: 12px; }
+.stat-label { font-size: 1.1rem; color: var(--text-dark); font-weight: 700; }
+.stat-sublabel { font-size: 0.85rem; color: var(--text-light); margin-top: 6px; }
+
 /* How It Works Steps */
 .steps-container { display: flex; justify-content: space-between; position: relative; margin-top: 60px; }
 .step-item { flex: 1; text-align: center; position: relative; padding: 0 20px; }
@@ -430,6 +438,39 @@ a { color: var(--secondary); text-decoration: none; }
                             <p>Go live in weeks. We handle document ingestion, training, and ongoing optimization.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manage Your Knowledge Base Section -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Intelligent Dashboard</span>
+                <h2 class="section-title">Manage Your Knowledge Base</h2>
+                <p class="section-subtitle">Full visibility and control over your organization's AI assistant.</p>
+            </div>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="60" data-suffix="%">0%</div>
+                    <div class="stat-label">Faster Onboarding</div>
+                    <div class="stat-sublabel">New hire ramp-up time</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="30" data-suffix="%">0%</div>
+                    <div class="stat-label">Fewer Escalations</div>
+                    <div class="stat-sublabel">Support tickets reduced</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="1" data-prefix="<" data-suffix="hr">0</div>
+                    <div class="stat-label">Time to Deploy</div>
+                    <div class="stat-sublabel">No lengthy implementation</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="100" data-suffix="%">0%</div>
+                    <div class="stat-label">Data Sovereignty</div>
+                    <div class="stat-sublabel">Private cloud only</div>
                 </div>
             </div>
         </div>
@@ -995,6 +1036,31 @@ a { color: var(--secondary); text-decoration: none; }
         overlay.classList.add('hidden');
         video.play();
     }
+
+    // Stat Counter Animation
+    const statObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseInt(el.dataset.target);
+                const prefix = el.dataset.prefix || '';
+                const suffix = el.dataset.suffix || '';
+                let current = 0;
+                const duration = 1500;
+                const step = target / (duration / 16);
+                const counter = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(counter);
+                    }
+                    el.textContent = prefix + Math.floor(current) + suffix;
+                }, 16);
+                statObserver.unobserve(el);
+            }
+        });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stat-number[data-target]').forEach(el => statObserver.observe(el));
 
     // Demo Modal
     function openDemoModal() {
