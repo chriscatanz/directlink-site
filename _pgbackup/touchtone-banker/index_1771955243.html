@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touchtone Banker | Traditional IVR Banking | Directlink</title>
+    <meta name="description" content="Secure self-service IVR for banking. Give customers fast access to account info while easing call volume and supporting high-frequency banking tasks.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+:root {
+    --primary: #092B49;
+    --secondary: #A62B9F;
+    --gradient-primary: linear-gradient(135deg, #092B49 0%, #A62B9F 100%);
+    --gradient-light: linear-gradient(135deg, rgba(9,43,73,0.05) 0%, rgba(166,43,159,0.05) 100%);
+    --text-dark: #1e1e2d;
+    --text-body: #5a5a72;
+    --text-light: #8a8aa3;
+    --bg-section: #f7f8fc;
+    --bg-dark: #0a0a1a;
+    --white: #ffffff;
+    --border: rgba(0,0,0,0.08);
+    --shadow-md: 0 8px 30px rgba(0,0,0,0.08);
+    --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Manrope', sans-serif; color: var(--text-body); line-height: 1.7; background: var(--white); }
+h1, h2, h3, h4 { font-weight: 700; color: var(--text-dark); line-height: 1.3; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+a { color: var(--secondary); text-decoration: none; }
+
+.header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1000; width: calc(100% - 60px); max-width: 1200px; }
+.header-pill { position: relative; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); border-radius: 100px; padding: 12px 16px 12px 32px; box-shadow: 0 4px 24px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.5); overflow: visible; }
+.logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; display: flex; align-items: center; text-decoration: none; } .logo img { height: 34px; width: auto; display: block; }
+.btn { display: inline-flex; align-items: center; padding: 12px 28px; font-weight: 600; font-size: 0.9rem; text-decoration: none; border-radius: 50px; transition: all 0.3s; }
+.btn-primary { background: var(--gradient-primary); color: white; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(166,43,159,0.4); }
+.btn-outline { border: 2px solid var(--primary); color: var(--primary); }
+.btn-outline:hover { background: var(--primary); color: white; }
+
+.hero { padding: 160px 0 100px; background: linear-gradient(180deg, #f0f4f8 0%, #ffffff 100%); }
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: white; border-radius: 50px; font-size: 0.85rem; font-weight: 600; color: var(--text-dark); margin-bottom: 24px; box-shadow: var(--shadow-md); }
+.hero h1 { font-size: 3rem; margin-bottom: 24px; line-height: 1.15; }
+.hero h1 .gradient-text { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { font-size: 1.15rem; margin-bottom: 32px; }
+.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.keypad-visual { background: white; border-radius: 24px; padding: 40px; box-shadow: var(--shadow-lg); max-width: 320px; margin: 0 auto; }
+.keypad-screen { background: var(--bg-section); border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 24px; }
+.keypad-screen p { font-size: 0.9rem; color: var(--text-body); margin: 0; }
+.keypad-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.keypad-btn { background: var(--bg-section); border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 1.3rem; font-weight: 600; color: var(--text-dark); cursor: pointer; transition: all 0.2s; margin: 0 auto; }
+.keypad-btn:hover { background: var(--gradient-primary); color: white; }
+
+.section { padding: 100px 0; }
+.section-dark { background: var(--bg-dark); color: white; }
+.section-dark h2, .section-dark h3 { color: white; }
+.section-dark p { color: rgba(255,255,255,0.7); }
+.section-light { background: var(--bg-section); }
+.section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
+.section-label { display: inline-block; padding: 8px 20px; background: var(--gradient-light); border-radius: 50px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--secondary); margin-bottom: 20px; }
+.section-dark .section-label { background: rgba(166,43,159,0.2); }
+.section-title { font-size: 2.5rem; margin-bottom: 20px; }
+.section-subtitle { font-size: 1.1rem; color: var(--text-light); }
+.section-dark .section-subtitle { color: rgba(255,255,255,0.6); }
+
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.feature-card { background: white; border-radius: 20px; padding: 36px 28px; box-shadow: var(--shadow-md); border: 1px solid var(--border); transition: all 0.4s; text-align: center; }
+.feature-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+.feature-icon { width: 72px; height: 72px; margin: 0 auto 20px; }
+.feature-icon img { width: 100%; height: 100%; object-fit: contain; }
+.feature-card h3 { font-size: 1.15rem; margin-bottom: 12px; }
+.feature-card p { font-size: 0.95rem; color: var(--text-light); }
+
+.tasks-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+.task-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; display: flex; align-items: flex-start; gap: 16px; }
+.task-icon { font-size: 1.5rem; }
+.task-card h4 { color: white; font-size: 1.05rem; margin-bottom: 4px; }
+.task-card p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin: 0; }
+
+.cta-section { padding: 100px 0; background: var(--bg-section); text-align: center; }
+.cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; }
+.cta-section p { font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin: 0 auto 32px; }
+.cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+.footer { background: #000; padding: 60px 0 40px; color: rgba(255,255,255,0.6); text-align: center; }
+.footer .logo { background: none; -webkit-text-fill-color: white; margin-bottom: 20px; display: inline-block; }
+
+@media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero-buttons { justify-content: center; }
+    .keypad-visual { margin-top: 40px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .tasks-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+    .hero { padding: 140px 0 60px; }
+    .hero h1 { font-size: 2.2rem; }
+    .section-title { font-size: 2rem; }
+}
+    
+/* Dropdown */
+.nav-dropdown { position: relative; }
+.nav-dropdown-trigger { cursor: pointer; display: flex; align-items: center; gap: 4px; }
+.nav-dropdown-trigger::after { content: ''; border: solid var(--text-body); border-width: 0 2px 2px 0; padding: 3px; transform: rotate(45deg); margin-top: -3px; transition: transform 0.3s; }
+.nav-dropdown:hover .nav-dropdown-trigger::after { transform: rotate(-135deg); margin-top: 3px; } /* Mega Menu */.nav-dropdown { position: static; } .nav-dropdown:hover .nav-dropdown-trigger { color: var(--secondary); } .nav-dropdown:hover .nav-dropdown-trigger::after { transform: rotate(-135deg); margin-top: 3px; border-color: var(--secondary); } .mega-menu { position: absolute; top: 100%; left: 0; right: 0; background: white; border-radius: 0 0 24px 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); padding: 24px 32px; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 100; margin-top: 12px; } .nav-dropdown:hover .mega-menu { opacity: 1; visibility: visible; margin-top: 0; } .mega-menu-grid { display: flex; justify-content: space-between; gap: 16px; } .mega-menu-item { display: flex; align-items: center; gap: 12px; padding: 16px; border-radius: 12px; text-decoration: none; color: var(--text-body); transition: all 0.3s; flex: 1; white-space: nowrap; } .mega-menu-item:hover { background: var(--bg-section); } .mega-menu-icon { width: 40px; height: 40px; background: var(--gradient-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 8px; flex-shrink: 0; } .mega-menu-icon img { width: 100%; height: 100%; object-fit: contain; } .mega-menu-item:hover .mega-menu-icon { background: var(--gradient-primary); } .mega-menu-item:hover .mega-menu-icon img { filter: brightness(0) invert(1); } .mega-menu-text strong { display: block; font-size: 0.9rem; color: var(--text-dark); font-weight: 700; } .mega-menu-text span { font-size: 0.75rem; color: var(--text-light); }
+.nav-dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); padding: 12px; min-width: 240px; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 100; }
+.nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.nav-dropdown-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: #5a5a72; transition: all 0.2s; }
+.nav-dropdown-item:hover { background: #f7f8fc; color: #092B49; }
+.nav-dropdown-icon { width: 36px; height: 36px; background: linear-gradient(135deg, rgba(9,43,73,0.05) 0%, rgba(166,43,159,0.05) 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 8px; }
+.nav-dropdown-icon img { width: 100%; height: 100%; }
+.nav-dropdown-text strong { display: block; font-size: 0.9rem; color: #1e1e2d; }
+.nav-dropdown-text span { font-size: 0.8rem; color: #8a8aa3; }
+.nav-menu { margin-left: 40px; display: flex; align-items: center; gap: 8px; }
+.nav-link { text-decoration: none; font-weight: 500; font-size: 0.9rem; color: var(--text-body); padding: 10px 18px; border-radius: 50px; transition: all 0.3s; }
+.nav-link:hover { color: var(--primary); background: rgba(9,43,73,0.05); }
+
+/* Demo Modal */
+.demo-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s; }
+.demo-modal-overlay.active { opacity: 1; visibility: visible; }
+.demo-modal { background: white; border-radius: 24px; width: 90%; max-width: 900px; max-height: 90vh; overflow: hidden; transform: scale(0.9) translateY(20px); transition: transform 0.3s; position: relative; }
+.demo-modal-overlay.active .demo-modal { transform: scale(1) translateY(0); }
+.demo-modal-close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: var(--bg-section); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--text-body); transition: all 0.3s; z-index: 10; line-height: 1; }
+.demo-modal-close:hover { background: var(--primary); color: white; }
+.demo-modal-content { min-height: 650px; }
+.demo-modal-content .meetings-iframe-container { height: 650px; }
+
+    </style>
+</head>
+<body>
+        <header class="header">
+        <div class="header-pill">
+            <a href="../" class="logo"><img src="../images/logo.svg" alt="Directlink"></a>
+            <nav class="nav-menu">
+                <div class="nav-dropdown">
+                    <span class="nav-link nav-dropdown-trigger">Solutions</span>
+                    <div class="mega-menu">
+                        <div class="mega-menu-grid">
+                            <a href="../virtual-banker/" class="mega-menu-item">
+                                <div class="mega-menu-icon"><img src="../images/ai-audio-support-gradient.svg" alt=""></div>
+                                <div class="mega-menu-text"><strong>Virtual Banker</strong><span>AI Phone Banking</span></div>
+                            </a>
+                            <a href="../compass/" class="mega-menu-item">
+                                <div class="mega-menu-icon"><img src="../images/ai-brain-lightbulb-gradient.svg" alt=""></div>
+                                <div class="mega-menu-text"><strong>Compass</strong><span>AI Internal Assistant</span></div>
+                            </a>
+                            <a href="../conversion-concierge/" class="mega-menu-item">
+                                <div class="mega-menu-icon"><img src="../images/ai-chip-sync-gradient.svg" alt=""></div>
+                                <div class="mega-menu-text"><strong>Conversion Concierge</strong><span>Digital Conversion Assistant</span></div>
+                            </a>
+                            <a href="../touchtone-banker/" class="mega-menu-item">
+                                <div class="mega-menu-icon"><img src="../images/ai-system-sync-monitor-gradient.svg" alt=""></div>
+                                <div class="mega-menu-text"><strong>Touchtone Banker</strong><span>IVR Phone Teller</span></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <a href="../about/" class="nav-link">About</a>
+                <a href="../blog/" class="nav-link">Blog</a>
+                <a href="../contact/" class="nav-link">Contact</a>
+            </nav>
+            <a href="#" onclick="openDemoModal(); return false;" class="btn btn-primary">Request Demo</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">📱 Traditional IVR</div>
+                    <h1>Reliable <span class="gradient-text">Self-Service</span> Banking</h1>
+                    <p>Touchtone Banker delivers secure self-service IVR for customers who prefer keypad navigation. Fast access to account info, reduced call volume, and support for high-frequency banking tasks.</p>
+                    <div class="hero-buttons">
+                        <a href="#" onclick="openDemoModal(); return false;" class="btn btn-primary">Schedule a Demo →</a>
+                        <a href="../virtual-banker/" class="btn btn-outline">See AI Option</a>
+                    </div>
+                </div>
+                <div class="keypad-visual">
+                    <div class="keypad-screen">
+                        <p>Press 1 for account balance<br>Press 2 for recent transactions<br>Press 3 for transfers</p>
+                    </div>
+                    <div class="keypad-grid">
+                        <button class="keypad-btn">1</button>
+                        <button class="keypad-btn">2</button>
+                        <button class="keypad-btn">3</button>
+                        <button class="keypad-btn">4</button>
+                        <button class="keypad-btn">5</button>
+                        <button class="keypad-btn">6</button>
+                        <button class="keypad-btn">7</button>
+                        <button class="keypad-btn">8</button>
+                        <button class="keypad-btn">9</button>
+                        <button class="keypad-btn">*</button>
+                        <button class="keypad-btn">0</button>
+                        <button class="keypad-btn">#</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Features</span>
+                <h2 class="section-title">Simple, Secure, Reliable</h2>
+                <p class="section-subtitle">Traditional IVR that just works, with the security and compliance your institution requires.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="../images/asset-document-shield-lock-gradient.svg" alt="Secure">
+                    </div>
+                    <h3>Secure Authentication</h3>
+                    <p>Multi-factor caller verification protects member accounts and meets regulatory requirements.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="../images/ai-system-sync-monitor-gradient.svg" alt="Core Integration">
+                    </div>
+                    <h3>Core Integration</h3>
+                    <p>Real-time connections to major core banking systems for accurate, up-to-the-minute account data.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="../images/asset-cloud-security-verified-gradient.svg" alt="24/7">
+                    </div>
+                    <h3>24/7 Availability</h3>
+                    <p>Always-on self-service extends your service hours without extending your staffing costs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="../images/chart-document-data-gradient.svg" alt="Reporting">
+                    </div>
+                    <h3>Usage Analytics</h3>
+                    <p>Track call patterns, popular menu options, and abandonment rates to optimize the experience.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="../images/ai-dual-gears-gradient.svg" alt="Customizable">
+                    </div>
+                    <h3>Fully Customizable</h3>
+                    <p>Configure menus, prompts, and routing to match your institution's specific needs and branding.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="../images/ai-chip-sync-gradient.svg" alt="Upgrade Path">
+                    </div>
+                    <h3>AI Upgrade Path</h3>
+                    <p>Start with Touchtone and upgrade to Virtual Banker's conversational AI when you're ready.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Capabilities</span>
+                <h2 class="section-title">What Members Can Do</h2>
+                <p class="section-subtitle">Common self-service tasks handled automatically.</p>
+            </div>
+            <div class="tasks-grid">
+                <div class="task-card">
+                    <div class="task-icon">💰</div>
+                    <div>
+                        <h4>Check Balances</h4>
+                        <p>Real-time balance inquiries for checking, savings, and loan accounts.</p>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <div class="task-icon">📋</div>
+                    <div>
+                        <h4>Recent Transactions</h4>
+                        <p>Hear recent transaction history including dates, amounts, and descriptions.</p>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <div class="task-icon">🔄</div>
+                    <div>
+                        <h4>Transfer Funds</h4>
+                        <p>Move money between accounts securely with confirmation codes.</p>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <div class="task-icon">💳</div>
+                    <div>
+                        <h4>Card Services</h4>
+                        <p>Report lost cards, activate new cards, and check card status.</p>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <div class="task-icon">📍</div>
+                    <div>
+                        <h4>Branch & ATM Locator</h4>
+                        <p>Find nearby branches and ATMs with hours and directions.</p>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <div class="task-icon">📞</div>
+                    <div>
+                        <h4>Smart Routing</h4>
+                        <p>Connect to the right department or agent when live help is needed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Reduce Call Volume?</h2>
+            <p>See how Touchtone Banker can help your members help themselves, 24/7.</p>
+            <div class="cta-buttons">
+                <a href="#" onclick="openDemoModal(); return false;" class="btn btn-primary">Schedule Your Demo →</a>
+                <a href="../virtual-banker/" class="btn btn-outline">Explore AI Option</a>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Demo Modal -->
+    <div class="demo-modal-overlay" id="demoModal" onclick="closeDemoModal(event)">
+        <div class="demo-modal" onclick="event.stopPropagation()">
+            <button class="demo-modal-close" onclick="closeDemoModal()">&times;</button>
+            <div class="demo-modal-content">
+                <div class="meetings-iframe-container" data-src="https://hello.directlink.ai/meetings/chris-catanzarite/directlink-demo-calendar?embed=true"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
+    <script>
+    function openDemoModal() {
+        document.getElementById('demoModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeDemoModal(e) {
+        if (!e || e.target === e.currentTarget) {
+            document.getElementById('demoModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeDemoModal();
+    });
+    </script>
+
+    <footer class="footer">
+        <div class="container">
+            <img src="../images/Directlink-Logo-White.svg" alt="Directlink" class="footer-logo" style="height: 30px;">
+            <p>Conversational AI for community banks and credit unions.</p>
+            <p style="margin-top: 40px; font-size: 0.85rem;">© 2026 Directlink. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
