@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Directlink | Conversational AI for Banks & Credit Unions</title>
+        <meta name="description" content="Directlink provides enterprise conversational AI solutions for community banks and credit unions. Automate calls, boost efficiency, and deliver 24/7 support while maintaining compliance.">
+        <meta name="keywords" content="conversational AI, banking AI, credit union AI, virtual banker, IVR, phone banking automation, community bank technology">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <style>
+:root {
+    --primary: #092B49;
+    --primary-light: #0d3a61;
+    --secondary: #A62B9F;
+    --secondary-light: #c44bbd;
+    --accent: #06b6d4;
+    --gradient-primary: linear-gradient(135deg, #092B49 0%, #A62B9F 100%);
+    --gradient-secondary: linear-gradient(135deg, #A62B9F 0%, #6366f1 100%);
+    --gradient-light: linear-gradient(135deg, rgba(9,43,73,0.05) 0%, rgba(166,43,159,0.05) 100%);
+    --text-dark: #1e1e2d;
+    --text-body: #5a5a72;
+    --text-light: #8a8aa3;
+    --bg-dark: #0a0a1a;
+    --bg-section: #f7f8fc;
+    --white: #ffffff;
+    --border: rgba(0,0,0,0.08);
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+    --shadow-md: 0 8px 30px rgba(0,0,0,0.08);
+    --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+    --shadow-glow: 0 10px 40px rgba(166,43,159,0.25);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Manrope', sans-serif; color: var(--text-body); line-height: 1.7; background: var(--white); overflow-x: hidden; }
+h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height: 1.3; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+/* ===== FLOATING PILL HEADER ===== */
+.header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1000; width: calc(100% - 60px); max-width: 1200px; }
+.header-pill { position: relative; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); border-radius: 100px; padding: 12px 16px 12px 32px; box-shadow: 0 4px 24px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.5); }
+.logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.nav-menu { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; }
+.nav-link { text-decoration: none; font-weight: 500; font-size: 0.9rem; color: var(--text-body); padding: 10px 18px; border-radius: 50px; transition: all 0.3s; }
+.nav-link:hover { color: var(--primary); background: rgba(9,43,73,0.05); }
+
+/* Dropdown */
+.nav-dropdown { position: relative; }
+.nav-dropdown-trigger { cursor: pointer; display: flex; align-items: center; gap: 4px; }
+.nav-dropdown-trigger::after { content: ''; border: solid var(--text-body); border-width: 0 2px 2px 0; padding: 3px; transform: rotate(45deg); margin-top: -3px; transition: transform 0.3s; }
+.nav-dropdown:hover .nav-dropdown-trigger::after { transform: rotate(-135deg); margin-top: 3px; }
+.nav-dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); padding: 12px; min-width: 240px; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 100; }
+.nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.nav-dropdown-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: var(--text-body); transition: all 0.2s; }
+.nav-dropdown-item:hover { background: var(--bg-section); color: var(--primary); }
+.nav-dropdown-icon { width: 36px; height: 36px; background: var(--gradient-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 8px; }
+.nav-dropdown-icon img { width: 100%; height: 100%; }
+.nav-dropdown-text strong { display: block; font-size: 0.9rem; color: var(--text-dark); }
+.nav-dropdown-text span { font-size: 0.8rem; color: var(--text-light); }
+
+/* ===== BUTTONS ===== */
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 28px; font-weight: 600; font-size: 0.9rem; text-decoration: none; border-radius: 50px; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); position: relative; overflow: hidden; border: none; cursor: pointer; }
+.btn-primary { background: var(--gradient-primary); color: white; box-shadow: 0 4px 15px rgba(166,43,159,0.3); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(166,43,159,0.4); }
+.btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+.btn-outline:hover { background: var(--primary); color: white; }
+.btn-white { background: white; color: var(--primary); }
+.btn-white:hover { background: rgba(255,255,255,0.9); transform: translateY(-2px); }
+
+/* ===== HERO SECTION ===== */
+.hero { min-height: 100vh; background: linear-gradient(180deg, #f0f4f8 0%, #ffffff 100%); position: relative; display: flex; align-items: center; padding: 120px 0 80px; overflow: hidden; }
+.hero-bg-shapes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.hero-shape { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.25; }
+.hero-shape-1 { width: 500px; height: 500px; background: var(--secondary); top: -150px; right: 10%; }
+.hero-shape-2 { width: 400px; height: 400px; background: var(--primary); bottom: -100px; left: 5%; }
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 2; }
+.hero-content { max-width: 600px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: white; border-radius: 50px; font-size: 0.85rem; font-weight: 600; color: var(--text-dark); margin-bottom: 24px; box-shadow: var(--shadow-sm); }
+.hero-badge-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: pulse-dot 2s ease-in-out infinite; }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
+.hero h1 { font-size: 3.5rem; font-weight: 800; color: var(--text-dark); margin-bottom: 24px; letter-spacing: -1px; line-height: 1.15; }
+.hero h1 .gradient-text { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-text { font-size: 1.15rem; color: var(--text-body); margin-bottom: 40px; line-height: 1.8; }
+.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-stats { display: flex; gap: 40px; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); }
+.hero-stat { text-align: left; }
+.hero-stat-value { font-size: 2rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-stat-label { font-size: 0.9rem; color: var(--text-light); }
+
+/* Hero Visual */
+.hero-visual { position: relative; }
+.hero-mockup { background: white; border-radius: 24px; padding: 24px; box-shadow: 0 50px 100px rgba(0,0,0,0.15); position: relative; z-index: 2; }
+.mockup-header { display: flex; gap: 8px; margin-bottom: 20px; }
+.mockup-dot { width: 12px; height: 12px; border-radius: 50%; }
+.mockup-dot-red { background: #ff5f57; }
+.mockup-dot-yellow { background: #ffbd2e; }
+.mockup-dot-green { background: #28ca42; }
+.chat-demo { display: flex; flex-direction: column; gap: 16px; }
+.chat-msg { padding: 14px 18px; border-radius: 16px; font-size: 0.9rem; line-height: 1.5; max-width: 85%; animation: fadeInUp 0.5s ease forwards; opacity: 0; }
+.chat-msg:nth-child(1) { animation-delay: 0.3s; }
+.chat-msg:nth-child(2) { animation-delay: 0.8s; }
+.chat-msg:nth-child(3) { animation-delay: 1.3s; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.chat-user { background: var(--bg-section); color: var(--text-dark); align-self: flex-end; border-bottom-right-radius: 4px; }
+.chat-ai { background: var(--gradient-primary); color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+
+/* ===== SECTIONS ===== */
+.section { padding: 100px 0; position: relative; }
+.section-dark { background: var(--bg-dark); color: white; }
+.section-dark h2, .section-dark h3, .section-dark h4 { color: white; }
+.section-dark p { color: rgba(255,255,255,0.7); }
+.section-light { background: var(--bg-section); }
+.section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
+.section-label { display: inline-block; padding: 8px 20px; background: var(--gradient-light); border-radius: 50px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--secondary); margin-bottom: 20px; }
+.section-dark .section-label { background: rgba(166,43,159,0.2); color: var(--secondary-light); }
+.section-title { font-size: 2.75rem; margin-bottom: 20px; letter-spacing: -0.5px; }
+.section-subtitle { font-size: 1.1rem; color: var(--text-light); }
+.section-dark .section-subtitle { color: rgba(255,255,255,0.6); }
+
+/* ===== PRODUCTS GRID ===== */
+.products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+.product-card { background: white; border-radius: 24px; padding: 40px; box-shadow: var(--shadow-md); border: 1px solid var(--border); transition: all 0.4s; position: relative; overflow: hidden; }
+.product-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gradient-primary); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+.product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+.product-card:hover::before { transform: scaleX(1); }
+.product-icon { width: 64px; height: 64px; background: var(--gradient-light); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; padding: 14px; }
+.product-icon img { width: 100%; height: 100%; object-fit: contain; }
+.product-card h3 { font-size: 1.4rem; margin-bottom: 12px; }
+.product-card p { color: var(--text-light); margin-bottom: 20px; }
+.product-link { color: var(--secondary); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+.product-link:hover { gap: 12px; }
+
+/* ===== FEATURES ===== */
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.feature-box { text-align: center; padding: 40px 28px; border-radius: 20px; background: white; box-shadow: var(--shadow-sm); border: 1px solid var(--border); transition: all 0.4s; }
+.feature-box:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+.feature-icon { width: 72px; height: 72px; background: var(--gradient-light); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; padding: 16px; }
+.feature-icon img { width: 100%; height: 100%; object-fit: contain; }
+.feature-box h3 { font-size: 1.15rem; margin-bottom: 12px; }
+.feature-box p { font-size: 0.95rem; color: var(--text-light); }
+
+/* ===== STATS ROW ===== */
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.stat-card { text-align: center; padding: 40px 24px; background: rgba(255,255,255,0.05); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
+.stat-value { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, #06b6d4 0%, #A62B9F 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+.stat-label { font-size: 1rem; color: rgba(255,255,255,0.7); }
+
+/* ===== TESTIMONIALS ===== */
+.testimonial-card { background: white; border-radius: 24px; padding: 40px; box-shadow: var(--shadow-md); }
+.testimonial-quote { font-size: 1.15rem; line-height: 1.8; margin-bottom: 24px; font-style: italic; }
+.testimonial-author { display: flex; align-items: center; gap: 16px; }
+.testimonial-avatar { width: 56px; height: 56px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem; }
+.testimonial-info strong { display: block; color: var(--text-dark); }
+.testimonial-info span { font-size: 0.9rem; color: var(--text-light); }
+
+/* ===== CTA SECTION ===== */
+.cta-section { padding: 120px 0; background: var(--bg-dark); text-align: center; position: relative; overflow: hidden; }
+.cta-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+.cta-section h2 { font-size: 3rem; color: white; margin-bottom: 20px; }
+.cta-section p { font-size: 1.2rem; color: rgba(255,255,255,0.7); margin-bottom: 40px; }
+.cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+
+/* ===== FOOTER ===== */
+.footer { background: #000; padding: 80px 0 40px; color: rgba(255,255,255,0.6); }
+.footer-grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 60px; margin-bottom: 60px; }
+.footer-brand .logo { margin-bottom: 16px; display: inline-block; background: none; -webkit-background-clip: unset; -webkit-text-fill-color: white; }
+.footer-brand p { font-size: 0.95rem; line-height: 1.7; }
+.footer-column h4 { color: white; font-size: 1rem; margin-bottom: 24px; font-weight: 700; }
+.footer-column a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 14px; font-size: 0.95rem; transition: all 0.3s; }
+.footer-column a:hover { color: white; transform: translateX(5px); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
+
+/* ===== ANIMATIONS ===== */
+.animate-on-scroll { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); }
+.animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero-content { max-width: 100%; }
+    .hero-buttons { justify-content: center; }
+    .hero-stats { justify-content: center; }
+    .hero-visual { max-width: 500px; margin: 40px auto 0; }
+    .products-grid, .features-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .nav-menu { display: none; }
+}
+@media (max-width: 768px) {
+    .hero { padding-top: 100px; }
+    .hero h1 { font-size: 2.2rem; }
+    .section-title { font-size: 2rem; }
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+    .stats-row { grid-template-columns: 1fr; }
+    .cta-section h2 { font-size: 2rem; }
+}
+
+/* ===== DEMO MODAL ===== */
+.demo-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s; }
+.demo-modal-overlay.active { opacity: 1; visibility: visible; }
+.demo-modal { background: white; border-radius: 24px; width: 90%; max-width: 700px; max-height: 90vh; overflow: hidden; transform: scale(0.9); transition: transform 0.3s; position: relative; }
+.demo-modal-overlay.active .demo-modal { transform: scale(1); }
+.demo-modal-close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: var(--bg-section); border: none; cursor: pointer; font-size: 24px; z-index: 10; }
+.demo-modal-close:hover { background: var(--primary); color: white; }
+.demo-modal-content { min-height: 600px; }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-pill">
+                <a href="./" class="logo">Directlink</a>
+                <nav class="nav-menu">
+                    <div class="nav-dropdown">
+                        <span class="nav-link nav-dropdown-trigger">Solutions</span>
+                        <div class="nav-dropdown-menu">
+                            <a href="./compass/" class="nav-dropdown-item">
+                                <div class="nav-dropdown-icon"><img src="/images/ai-brain-lightbulb.svg" alt=""></div>
+                                <div class="nav-dropdown-text"><strong>Compass</strong><span>Internal knowledge assistant</span></div>
+                            </a>
+                            <a href="./virtual-banker/" class="nav-dropdown-item">
+                                <div class="nav-dropdown-icon"><img src="/images/ai-audio-support.svg" alt=""></div>
+                                <div class="nav-dropdown-text"><strong>Virtual Banker</strong><span>AI phone banking</span></div>
+                            </a>
+                            <a href="./conversion-concierge/" class="nav-dropdown-item">
+                                <div class="nav-dropdown-icon"><img src="/images/ai-chip-sync.svg" alt=""></div>
+                                <div class="nav-dropdown-text"><strong>Conversion Concierge</strong><span>Migration support</span></div>
+                            </a>
+                            <a href="./touchtone-banker/" class="nav-dropdown-item">
+                                <div class="nav-dropdown-icon"><img src="/images/ai-system-sync-monitor.svg" alt=""></div>
+                                <div class="nav-dropdown-text"><strong>Touchtone Banker</strong><span>Traditional IVR</span></div>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="./about/" class="nav-link">About</a>
+                    <a href="./blog/" class="nav-link">Blog</a>
+                    <a href="./contact/" class="nav-link">Contact</a>
+                </nav>
+                <a href="./contact/" class="btn btn-primary">Request Demo</a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg-shapes">
+                <div class="hero-shape hero-shape-1"></div>
+                <div class="hero-shape hero-shape-2"></div>
+            </div>
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <span class="hero-badge-dot"></span>
+                            Trusted by Community Banks & Credit Unions
+                        </div>
+                        <h1>Conversational AI <span class="gradient-text">Built for Banking</span></h1>
+                        <p class="hero-text">Automate routine calls, deliver 24/7 member support, and empower your team to focus on what matters. Directlink's AI solutions are purpose-built for community financial institutions, with compliance and governance at the core.</p>
+                        <div class="hero-buttons">
+                            <a href="./contact/" class="btn btn-primary">Schedule a Demo →</a>
+                            <a href="#solutions" class="btn btn-outline">Explore Solutions</a>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="hero-stat">
+                                <div class="hero-stat-value">35%</div>
+                                <div class="hero-stat-label">Calls Automated</div>
+                            </div>
+                            <div class="hero-stat">
+                                <div class="hero-stat-value">30%</div>
+                                <div class="hero-stat-label">Reduced Wait Times</div>
+                            </div>
+                            <div class="hero-stat">
+                                <div class="hero-stat-value">24/7</div>
+                                <div class="hero-stat-label">Member Support</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="hero-mockup">
+                            <div class="mockup-header">
+                                <div class="mockup-dot mockup-dot-red"></div>
+                                <div class="mockup-dot mockup-dot-yellow"></div>
+                                <div class="mockup-dot mockup-dot-green"></div>
+                            </div>
+                            <div class="chat-demo">
+                                <div class="chat-msg chat-user">What's my checking account balance?</div>
+                                <div class="chat-msg chat-ai">Your checking account ending in 4523 has a current balance of $2,847.32. Your last transaction was a $45.00 debit card purchase at Grocery Mart yesterday.</div>
+                                <div class="chat-msg chat-user">Can you transfer $500 to savings?</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solutions Section -->
+        <section id="solutions" class="section section-light">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <span class="section-label">Solutions</span>
+                    <h2 class="section-title">AI Solutions for Every Banking Need</h2>
+                    <p class="section-subtitle">Purpose-built conversational AI that understands the unique needs of community financial institutions.</p>
+                </div>
+                <div class="products-grid">
+                    <div class="product-card animate-on-scroll delay-100">
+                        <div class="product-icon"><img src="/images/ai-brain-lightbulb.svg" alt="Compass"></div>
+                        <h3>Compass</h3>
+                        <p>Turn scattered documentation into instant, policy-aligned answers. Empower staff to work smarter, faster, and always in compliance with your internal knowledge assistant.</p>
+                        <a href="./compass/" class="product-link">Learn More →</a>
+                    </div>
+                    <div class="product-card animate-on-scroll delay-200">
+                        <div class="product-icon"><img src="/images/ai-audio-support.svg" alt="Virtual Banker"></div>
+                        <h3>Virtual Banker</h3>
+                        <p>Handle everyday banking calls with AI that resolves account questions, processes transactions, and delivers 24/7 support so your team can focus on higher-value needs.</p>
+                        <a href="./virtual-banker/" class="product-link">Learn More →</a>
+                    </div>
+                    <div class="product-card animate-on-scroll delay-300">
+                        <div class="product-icon"><img src="/images/ai-chip-sync.svg" alt="Conversion Concierge"></div>
+                        <h3>Conversion Concierge</h3>
+                        <p>Support digital and core banking conversions with AI that resolves issues in real time, reduces call volume, and guides customers through change with confidence.</p>
+                        <a href="./conversion-concierge/" class="product-link">Learn More →</a>
+                    </div>
+                    <div class="product-card animate-on-scroll delay-400">
+                        <div class="product-icon"><img src="/images/ai-system-sync-monitor.svg" alt="Touchtone Banker"></div>
+                        <h3>Touchtone Banker</h3>
+                        <p>Traditional IVR keypad solution for secure self-service, giving customers fast access to account info while easing call volume and supporting high-frequency banking tasks.</p>
+                        <a href="./touchtone-banker/" class="product-link">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Directlink Section -->
+        <section id="platform" class="section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <span class="section-label">Platform</span>
+                    <h2 class="section-title">Why Community Banks Choose Directlink</h2>
+                    <p class="section-subtitle">Enterprise-grade AI with the governance, security, and compliance your institution requires.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-box animate-on-scroll delay-100">
+                        <div class="feature-icon"><img src="/images/asset-document-shield-lock.svg" alt="Security"></div>
+                        <h3>Private Cloud Infrastructure</h3>
+                        <p>Your data stays yours. No third-party AI training on your conversations. SOC 2 compliant with examiner-grade audit logs.</p>
+                    </div>
+                    <div class="feature-box animate-on-scroll delay-200">
+                        <div class="feature-icon"><img src="/images/ai-dual-gears.svg" alt="Integration"></div>
+                        <h3>Core Integration</h3>
+                        <p>Direct API connections to major core banking systems for real-time account access, balance inquiries, and transaction processing.</p>
+                    </div>
+                    <div class="feature-box animate-on-scroll delay-300">
+                        <div class="feature-icon"><img src="/images/chart-document-data.svg" alt="Analytics"></div>
+                        <h3>Real-Time Analytics</h3>
+                        <p>Monitor performance, track automation rates, and gain insights into member needs with comprehensive dashboards and reporting.</p>
+                    </div>
+                    <div class="feature-box animate-on-scroll delay-100">
+                        <div class="feature-icon"><img src="/images/ai-audio-support.svg" alt="Natural Language"></div>
+                        <h3>Natural Language AI</h3>
+                        <p>Members speak naturally. Our AI understands intent, handles complex requests, and knows when to seamlessly escalate to your team.</p>
+                    </div>
+                    <div class="feature-box animate-on-scroll delay-200">
+                        <div class="feature-icon"><img src="/images/ai-task-checklist.svg" alt="Compliance"></div>
+                        <h3>Compliance Built-In</h3>
+                        <p>Every interaction follows your policies. AI responses are governed, auditable, and aligned with regulatory requirements.</p>
+                    </div>
+                    <div class="feature-box animate-on-scroll delay-300">
+                        <div class="feature-icon"><img src="/images/ai-lightbulb-gears.svg" alt="Deployment"></div>
+                        <h3>Fast Deployment</h3>
+                        <p>Go live in weeks, not months. Our team handles integration, training, and optimization so you see results quickly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results" class="section section-dark">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <span class="section-label">Results</span>
+                    <h2 class="section-title">Proven Impact at Community Institutions</h2>
+                    <p class="section-subtitle">Real results from banks and credit unions using Directlink.</p>
+                </div>
+                <div class="stats-row animate-on-scroll">
+                    <div class="stat-card">
+                        <div class="stat-value">35%</div>
+                        <div class="stat-label">Calls Automated</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">30%</div>
+                        <div class="stat-label">Reduced Wait Times</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">24/7</div>
+                        <div class="stat-label">Service Availability</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">90%+</div>
+                        <div class="stat-label">Member Satisfaction</div>
+                    </div>
+                </div>
+                <div class="testimonial-card animate-on-scroll" style="max-width: 800px; margin: 60px auto 0;">
+                    <p class="testimonial-quote">"Directlink's Virtual Banker has transformed how we serve our members. We automated 35% of our calls, reduced wait times by 30%, and now offer true 24/7 support. When severe weather hit, our AI kept us running while keeping our staff safe."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">UB</div>
+                        <div class="testimonial-info">
+                            <strong>United Bank of Georgia</strong>
+                            <span>Community Bank Partner</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content animate-on-scroll">
+                    <h2>Ready to Transform Your Member Experience?</h2>
+                    <p>See how Directlink can help your institution deliver better service, improve efficiency, and stay ahead of the competition.</p>
+                    <div class="cta-buttons">
+                        <a href="./contact/" class="btn btn-primary">Schedule Your Demo →</a>
+                        <a href="./blog/" class="btn btn-white">Read Our Blog</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <span class="logo">Directlink</span>
+                        <p>Conversational AI solutions purpose-built for community banks and credit unions. Trusted by institutions nationwide.</p>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Solutions</h4>
+                        <a href="./compass/">Compass</a>
+                        <a href="./virtual-banker/">Virtual Banker</a>
+                        <a href="./conversion-concierge/">Conversion Concierge</a>
+                        <a href="./touchtone-banker/">Touchtone Banker</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="./about/">About Us</a>
+                        <a href="./blog/">Blog</a>
+                        <a href="./contact/">Contact</a>
+                        <a href="./careers/">Careers</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <a href="./blog/">Articles</a>
+                        <a href="./webinars/">Webinars</a>
+                        <a href="./case-studies/">Case Studies</a>
+                        <a href="./support/">Support</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2026 Directlink. All rights reserved.</p>
+                    <p>
+                        <a href="./privacy/" style="color: inherit; text-decoration: none; margin-right: 20px;">Privacy Policy</a>
+                        <a href="./terms/" style="color: inherit; text-decoration: none;">Terms of Service</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Demo Modal -->
+        <div class="demo-modal-overlay" id="demoModal">
+            <div class="demo-modal">
+                <button class="demo-modal-close" onclick="closeDemoModal()">×</button>
+                <div class="demo-modal-content">
+                    <div class="meetings-iframe-container" data-src="https://hello.directlink.ai/meetings/directlinkdemo"></div>
+                    <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        // Scroll animations
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // Demo modal
+        function openDemoModal() {
+            document.getElementById('demoModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeDemoModal() {
+            document.getElementById('demoModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('demoModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('demoModal')) closeDemoModal();
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#demo') return;
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+        </script>
+    </body>
+</html>
