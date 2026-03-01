@@ -98,7 +98,8 @@ a { color: var(--secondary); text-decoration: none; }
 .demo-modal-content { min-height: 650px; }
 .demo-modal-content .meetings-iframe-container { height: 650px; }
 
-    </style>
+    .anim{opacity:0;transform:translateY(36px);transition:opacity 0.75s cubic-bezier(0.165,0.84,0.44,1),transform 0.75s cubic-bezier(0.165,0.84,0.44,1);}.anim.in{opacity:1;transform:translateY(0);}.anim-left{opacity:0;transform:translateX(-40px);transition:opacity 0.75s cubic-bezier(0.165,0.84,0.44,1),transform 0.75s cubic-bezier(0.165,0.84,0.44,1);}.anim-left.in{opacity:1;transform:translateX(0);}.anim-right{opacity:0;transform:translateX(40px);transition:opacity 0.75s cubic-bezier(0.165,0.84,0.44,1),transform 0.75s cubic-bezier(0.165,0.84,0.44,1);}.anim-right.in{opacity:1;transform:translateX(0);}.anim-scale{opacity:0;transform:scale(0.88);transition:opacity 0.75s cubic-bezier(0.165,0.84,0.44,1),transform 0.75s cubic-bezier(0.165,0.84,0.44,1);}.anim-scale.in{opacity:1;transform:scale(1);}.delay-1{transition-delay:0.1s;}.delay-2{transition-delay:0.2s;}.delay-3{transition-delay:0.3s;}.delay-4{transition-delay:0.4s;}.delay-5{transition-delay:0.5s;}.delay-6{transition-delay:0.6s;}
+</style>
 </head>
 <body>
         <header class="header">
@@ -137,7 +138,7 @@ a { color: var(--secondary); text-decoration: none; }
     </header>
 
     <section class="page-header">
-        <div class="container">
+        <div class="container anim">
             <h1>About Directlink</h1>
             <p>We're not just shaping the future of community banking. We're redefining it through cutting-edge technology and unparalleled service.</p>
         </div>
@@ -146,50 +147,50 @@ a { color: var(--secondary); text-decoration: none; }
     <section class="section">
         <div class="container">
             <div class="mission-grid">
-                <div class="mission-content">
+                <div class="mission-content anim-left">
                     <h2>Our Mission</h2>
                     <p>At Directlink, our mission is to revolutionize the banking experience through cutting-edge conversational AI technology and unparalleled service.</p>
                     <p>We believe community banks and credit unions deserve enterprise-grade AI solutions that respect their unique culture, maintain compliance, and enhance the personal relationships that define community banking.</p>
                     <p>As a rapidly growing company at the heart of digital banking transformation, we offer more than technology. We offer a partnership in innovation and an opportunity to lead the future of financial services.</p>
                 </div>
-                <div class="mission-visual">🏦</div>
+                <div class="mission-visual anim-right">🏦</div>
             </div>
         </div>
     </section>
 
     <section class="section section-dark">
         <div class="container">
-            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;" class="anim">
                 <h2 style="font-size: 2.2rem; margin-bottom: 20px;">Our Values</h2>
                 <p>The principles that guide everything we do.</p>
             </div>
             <div class="values-grid">
-                <div class="value-card">
+                <div class="value-card anim delay-1">
                     <div class="value-icon">🤝</div>
                     <h3>Partnership First</h3>
                     <p>We succeed when our clients succeed. Every decision we make is guided by what's best for the institutions we serve.</p>
                 </div>
-                <div class="value-card">
+                <div class="value-card anim delay-2">
                     <div class="value-icon">🔒</div>
                     <h3>Trust & Security</h3>
                     <p>Banking is built on trust. Our platform is designed with security, compliance, and governance at its core.</p>
                 </div>
-                <div class="value-card">
+                <div class="value-card anim delay-3">
                     <div class="value-icon">💡</div>
                     <h3>Continuous Innovation</h3>
                     <p>We're constantly pushing boundaries to deliver AI solutions that anticipate the needs of modern banking.</p>
                 </div>
-                <div class="value-card">
+                <div class="value-card anim delay-4">
                     <div class="value-icon">👥</div>
                     <h3>Human-Centered AI</h3>
                     <p>Technology should enhance human connection, not replace it. Our AI empowers staff to focus on what matters most.</p>
                 </div>
-                <div class="value-card">
+                <div class="value-card anim delay-5">
                     <div class="value-icon">📊</div>
                     <h3>Measurable Impact</h3>
                     <p>We're committed to delivering real, quantifiable results that transform operations and member experiences.</p>
                 </div>
-                <div class="value-card">
+                <div class="value-card anim delay-6">
                     <div class="value-icon">🌟</div>
                     <h3>Excellence in Service</h3>
                     <p>From implementation to ongoing support, we hold ourselves to the highest standards of service delivery.</p>
@@ -200,12 +201,12 @@ a { color: var(--secondary); text-decoration: none; }
 
     <section class="cta-section">
         <div class="container">
-            <h2>Ready to Shape the Future?</h2>
+            <div class="anim"><h2>Ready to Shape the Future?</h2>
             <p>Whether you're exploring AI for your institution or looking to join our team, we'd love to connect.</p>
             <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
                 <a href="../contact/" class="btn">Schedule a Demo</a>
                 <a href="../careers/" class="btn" style="background: transparent; border: 2px solid var(--primary); color: var(--primary);">View Careers</a>
-            </div>
+            </div></div>
         </div>
     </section>
 
@@ -243,5 +244,8 @@ a { color: var(--secondary); text-decoration: none; }
             <p style="margin-top: 40px; font-size: 0.85rem;">© 2026 Directlink. All rights reserved.</p>
         </div>
     </footer>
+<script>
+(function(){var els=document.querySelectorAll('.anim,.anim-left,.anim-right,.anim-scale');var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:0.12});els.forEach(function(el){obs.observe(el);});document.querySelectorAll('.hero .anim,.hero .anim-left,.hero .anim-right,.page-hero .anim').forEach(function(el){setTimeout(function(){el.classList.add('in');},120);});})();
+</script>
 </body>
 </html>

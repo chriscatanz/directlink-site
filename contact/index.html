@@ -93,7 +93,8 @@ a { color: var(--secondary); text-decoration: none; }
 .demo-modal-content { min-height: 650px; }
 .demo-modal-content .meetings-iframe-container { height: 650px; }
 
-    </style>
+    .anim{opacity:0;transform:translateY(36px);transition:opacity 0.75s cubic-bezier(0.165,0.84,0.44,1),transform 0.75s cubic-bezier(0.165,0.84,0.44,1);}.anim.in{opacity:1;transform:translateY(0);}.anim-left{opacity:0;transform:translateX(-40px);transition:opacity 0.75s cubic-bezier(0.165,0.84,0.44,1),transform 0.75s cubic-bezier(0.165,0.84,0.44,1);}.anim-left.in{opacity:1;transform:translateX(0);}.anim-right{opacity:0;transform:translateX(40px);transition:opacity 0.75s cubic-bezier(0.165,0.84,0.44,1),transform 0.75s cubic-bezier(0.165,0.84,0.44,1);}.anim-right.in{opacity:1;transform:translateX(0);}.anim-scale{opacity:0;transform:scale(0.88);transition:opacity 0.75s cubic-bezier(0.165,0.84,0.44,1),transform 0.75s cubic-bezier(0.165,0.84,0.44,1);}.anim-scale.in{opacity:1;transform:scale(1);}.delay-1{transition-delay:0.1s;}.delay-2{transition-delay:0.2s;}.delay-3{transition-delay:0.3s;}.delay-4{transition-delay:0.4s;}.delay-5{transition-delay:0.5s;}.delay-6{transition-delay:0.6s;}
+</style>
 </head>
 <body>
         <header class="header">
@@ -132,7 +133,7 @@ a { color: var(--secondary); text-decoration: none; }
     </header>
 
     <section class="page-header">
-        <div class="container">
+        <div class="container anim">
             <h1>Let's Talk</h1>
             <p>Ready to explore how conversational AI can transform your institution? We'd love to hear from you.</p>
         </div>
@@ -141,11 +142,11 @@ a { color: var(--secondary); text-decoration: none; }
     <section class="contact-section">
         <div class="container">
             <div class="contact-grid">
-                <div class="contact-info">
+                <div class="contact-info anim-left">
                     <h2>Get in Touch</h2>
                     <p>Whether you're ready to schedule a demo, have questions about our solutions, or want to learn more about AI for your institution, our team is here to help.</p>
                     
-                    <div class="contact-item">
+                    <div class="contact-item anim delay-1">
                         <div class="contact-item-icon">📧</div>
                         <div>
                             <h4>Email</h4>
@@ -153,7 +154,7 @@ a { color: var(--secondary); text-decoration: none; }
                         </div>
                     </div>
                     
-                    <div class="contact-item">
+                    <div class="contact-item anim delay-2">
                         <div class="contact-item-icon">📍</div>
                         <div>
                             <h4>Location</h4>
@@ -161,7 +162,7 @@ a { color: var(--secondary); text-decoration: none; }
                         </div>
                     </div>
                     
-                    <div class="contact-item">
+                    <div class="contact-item anim delay-3">
                         <div class="contact-item-icon">🤝</div>
                         <div>
                             <h4>Partnerships</h4>
@@ -170,7 +171,7 @@ a { color: var(--secondary); text-decoration: none; }
                     </div>
                 </div>
                 
-                <div class="demo-embed">
+                <div class="demo-embed anim-right">
                     <div class="demo-embed-header">
                         <h3>Schedule a Demo</h3>
                         <p>See Directlink in action with a personalized walkthrough.</p>
@@ -218,5 +219,8 @@ a { color: var(--secondary); text-decoration: none; }
             <p style="margin-top: 40px; font-size: 0.85rem;">© 2026 Directlink. All rights reserved.</p>
         </div>
     </footer>
+<script>
+(function(){var els=document.querySelectorAll('.anim,.anim-left,.anim-right,.anim-scale');var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:0.12});els.forEach(function(el){obs.observe(el);});document.querySelectorAll('.hero .anim,.hero .anim-left,.hero .anim-right,.page-hero .anim').forEach(function(el){setTimeout(function(){el.classList.add('in');},120);});})();
+</script>
 </body>
 </html>

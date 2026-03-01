@@ -126,7 +126,8 @@ a { color: var(--secondary); text-decoration: none; }
 .demo-modal-content { min-height: 650px; }
 .demo-modal-content .meetings-iframe-container { height: 650px; }
 
-    </style>
+    .anim{opacity:0;transform:translateY(36px);transition:opacity 0.75s cubic-bezier(0.165,0.84,0.44,1),transform 0.75s cubic-bezier(0.165,0.84,0.44,1);}.anim.in{opacity:1;transform:translateY(0);}.anim-left{opacity:0;transform:translateX(-40px);transition:opacity 0.75s cubic-bezier(0.165,0.84,0.44,1),transform 0.75s cubic-bezier(0.165,0.84,0.44,1);}.anim-left.in{opacity:1;transform:translateX(0);}.anim-right{opacity:0;transform:translateX(40px);transition:opacity 0.75s cubic-bezier(0.165,0.84,0.44,1),transform 0.75s cubic-bezier(0.165,0.84,0.44,1);}.anim-right.in{opacity:1;transform:translateX(0);}.anim-scale{opacity:0;transform:scale(0.88);transition:opacity 0.75s cubic-bezier(0.165,0.84,0.44,1),transform 0.75s cubic-bezier(0.165,0.84,0.44,1);}.anim-scale.in{opacity:1;transform:scale(1);}.delay-1{transition-delay:0.1s;}.delay-2{transition-delay:0.2s;}.delay-3{transition-delay:0.3s;}.delay-4{transition-delay:0.4s;}.delay-5{transition-delay:0.5s;}.delay-6{transition-delay:0.6s;}
+</style>
 </head>
 <body>
         <header class="header">
@@ -167,7 +168,7 @@ a { color: var(--secondary); text-decoration: none; }
     <section class="hero">
         <div class="container">
             <div class="hero-grid">
-                <div class="hero-content">
+                <div class="hero-content anim">
                     <div class="hero-badge">🔄 Migration Support AI</div>
                     <h1>Navigate Change With <span class="gradient-text">Confidence</span></h1>
                     <p>Conversion Concierge supports digital and core banking conversions with AI that resolves issues in real time, reduces call volume, and guides customers through change with confidence.</p>
@@ -176,7 +177,7 @@ a { color: var(--secondary); text-decoration: none; }
                         <a href="../#solutions" class="btn btn-outline">Learn More</a>
                     </div>
                 </div>
-                <div class="hero-visual">
+                <div class="hero-visual anim-right">
                     <img src="../images/ai-chip-sync-gradient.svg" alt="Conversion Support">
                     <h3>Seamless Transitions</h3>
                     <p>Keep members informed and supported throughout your digital transformation.</p>
@@ -187,48 +188,48 @@ a { color: var(--secondary); text-decoration: none; }
 
     <section class="section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header anim">
                 <span class="section-label">Features</span>
                 <h2 class="section-title">Purpose-Built for Banking Conversions</h2>
                 <p class="section-subtitle">Everything you need to support members through digital and core migrations.</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card anim delay-1">
                     <div class="feature-icon">
                         <img src="../images/ai-system-sync-monitor-gradient.svg" alt="Simple Integration">
                     </div>
                     <h3>Simple Telephony Integration</h3>
                     <p>Works with any existing phone system and contact center solution, minimizing IT overhead.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card anim delay-2">
                     <div class="feature-icon">
                         <img src="../images/ai-brain-lightbulb-gradient.svg" alt="AI Feedback">
                     </div>
                     <h3>AI-Powered Feedback</h3>
                     <p>Continuously analyzes interactions to detect emerging issues and recommends new topics to address.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card anim delay-3">
                     <div class="feature-icon">
                         <img src="../images/ai-task-checklist-gradient.svg" alt="Knowledgebase">
                     </div>
                     <h3>Pre-Built Knowledgebase</h3>
                     <p>Hundreds of FAQs tailored to digital and core migration scenarios, ready to deploy immediately.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card anim delay-1">
                     <div class="feature-icon">
                         <img src="../images/chart-document-data-gradient.svg" alt="CMS">
                     </div>
                     <h3>Content Management</h3>
                     <p>Make fast content adjustments without IT involvement as new issues arise during conversion.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card anim delay-2">
                     <div class="feature-icon">
                         <img src="../images/asset-cloud-security-verified-gradient.svg" alt="Secure">
                     </div>
                     <h3>Secure & Compliant</h3>
                     <p>Private cloud infrastructure with full audit logging and examiner-grade compliance controls.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card anim delay-3">
                     <div class="feature-icon">
                         <img src="../images/ai-dual-gears-gradient.svg" alt="Upgrade Ready">
                     </div>
@@ -241,34 +242,34 @@ a { color: var(--secondary); text-decoration: none; }
 
     <section class="section section-dark">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header anim">
                 <span class="section-label">Process</span>
                 <h2 class="section-title">How It Works</h2>
                 <p class="section-subtitle">Get up and running quickly with our proven implementation process.</p>
             </div>
             <div class="timeline">
-                <div class="timeline-item">
+                <div class="timeline-item anim delay-1">
                     <div class="timeline-number">1</div>
                     <div class="timeline-content">
                         <h3>Deploy Pre-Built Knowledge</h3>
                         <p>Launch with our migration-specific FAQ library covering common conversion questions and issues.</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item anim delay-2">
                     <div class="timeline-number">2</div>
                     <div class="timeline-content">
                         <h3>Customize for Your Conversion</h3>
                         <p>Tailor content to your specific timeline, systems, and member communication strategy.</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item anim delay-3">
                     <div class="timeline-number">3</div>
                     <div class="timeline-content">
                         <h3>Monitor & Adapt</h3>
                         <p>AI detects emerging issues in real-time so you can add new content and responses on the fly.</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item anim delay-4">
                     <div class="timeline-number">4</div>
                     <div class="timeline-content">
                         <h3>Reduce Call Volume</h3>
@@ -280,7 +281,7 @@ a { color: var(--secondary); text-decoration: none; }
     </section>
 
     <section class="cta-section">
-        <div class="container">
+        <div class="container anim">
             <h2>Planning a Core or Digital Conversion?</h2>
             <p>See how Conversion Concierge can help you support members and reduce call volume during your transition.</p>
             <div class="cta-buttons">
@@ -324,5 +325,8 @@ a { color: var(--secondary); text-decoration: none; }
             <p style="margin-top: 40px; font-size: 0.85rem;">© 2026 Directlink. All rights reserved.</p>
         </div>
     </footer>
+<script>
+(function(){var els=document.querySelectorAll('.anim,.anim-left,.anim-right,.anim-scale');var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:0.12});els.forEach(function(el){obs.observe(el);});document.querySelectorAll('.hero .anim,.hero .anim-left,.hero .anim-right,.page-hero .anim').forEach(function(el){setTimeout(function(){el.classList.add('in');},120);});})();
+</script>
 </body>
 </html>
