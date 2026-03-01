@@ -204,7 +204,8 @@ a { color: var(--secondary); text-decoration: none; }
     .section-title { font-size: 2rem; }
     .flip-card { height: 200px; }
 }
-    </style>
+    .anim{opacity:0;transform:translateY(36px);transition:opacity 0.75s cubic-bezier(0.165,0.84,0.44,1),transform 0.75s cubic-bezier(0.165,0.84,0.44,1);}.anim.in{opacity:1;transform:translateY(0);}.anim-left{opacity:0;transform:translateX(-40px);transition:opacity 0.75s cubic-bezier(0.165,0.84,0.44,1),transform 0.75s cubic-bezier(0.165,0.84,0.44,1);}.anim-left.in{opacity:1;transform:translateX(0);}.anim-right{opacity:0;transform:translateX(40px);transition:opacity 0.75s cubic-bezier(0.165,0.84,0.44,1),transform 0.75s cubic-bezier(0.165,0.84,0.44,1);}.anim-right.in{opacity:1;transform:translateX(0);}.anim-scale{opacity:0;transform:scale(0.88);transition:opacity 0.75s cubic-bezier(0.165,0.84,0.44,1),transform 0.75s cubic-bezier(0.165,0.84,0.44,1);}.anim-scale.in{opacity:1;transform:scale(1);}.delay-1{transition-delay:0.1s;}.delay-2{transition-delay:0.2s;}.delay-3{transition-delay:0.3s;}.delay-4{transition-delay:0.4s;}.delay-5{transition-delay:0.5s;}.delay-6{transition-delay:0.6s;}
+</style>
 </head>
 <body>
     <header class="header">
@@ -245,7 +246,7 @@ a { color: var(--secondary); text-decoration: none; }
     <section class="hero">
         <div class="container">
             <div class="hero-grid">
-                <div class="hero-content">
+                <div class="hero-content anim">
                     <div class="hero-badge">📞 AI Phone Banking</div>
                     <h1>Modern Banking Begins With <span class="gradient-text">Virtual Banker</span></h1>
                     <p>Handle everyday banking calls with AI that resolves account questions, processes transactions, and delivers 24/7 support so your team can focus on higher-value member relationships.</p>
@@ -268,7 +269,7 @@ a { color: var(--secondary); text-decoration: none; }
                         </div>
                     </div>
                 </div>
-                <div class="hero-visual">
+                <div class="hero-visual anim-right">
                     <div class="phone-mockup">
                         <div class="phone-screen">
                             <div class="phone-header">
@@ -290,13 +291,13 @@ a { color: var(--secondary); text-decoration: none; }
 
     <section class="section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header anim">
                 <span class="section-label">Capabilities</span>
                 <h2 class="section-title">One Intelligent Layer for Every Call</h2>
                 <p class="section-subtitle">Virtual Banker unifies AI-powered phone banking, auto-attendant, and routing into a single solution you control.</p>
             </div>
             <div class="features-grid">
-                <div class="flip-card">
+                <div class="flip-card anim delay-1">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="feature-icon"><img src="../images/chatbot-conversation-gradient.svg" alt=""></div>
@@ -307,7 +308,7 @@ a { color: var(--secondary); text-decoration: none; }
                         </div>
                     </div>
                 </div>
-                <div class="flip-card">
+                <div class="flip-card anim delay-2">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="feature-icon"><img src="../images/ai-system-sync-monitor-gradient.svg" alt=""></div>
@@ -318,7 +319,7 @@ a { color: var(--secondary); text-decoration: none; }
                         </div>
                     </div>
                 </div>
-                <div class="flip-card">
+                <div class="flip-card anim delay-3">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="feature-icon"><img src="../images/ai-security-shield-gradient.svg" alt=""></div>
@@ -329,7 +330,7 @@ a { color: var(--secondary); text-decoration: none; }
                         </div>
                     </div>
                 </div>
-                <div class="flip-card">
+                <div class="flip-card anim delay-1">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="feature-icon"><img src="../images/ai-chip-sync-gradient.svg" alt=""></div>
@@ -340,7 +341,7 @@ a { color: var(--secondary); text-decoration: none; }
                         </div>
                     </div>
                 </div>
-                <div class="flip-card">
+                <div class="flip-card anim delay-2">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="feature-icon"><img src="../images/ai-task-checklist-gradient.svg" alt=""></div>
@@ -351,7 +352,7 @@ a { color: var(--secondary); text-decoration: none; }
                         </div>
                     </div>
                 </div>
-                <div class="flip-card">
+                <div class="flip-card anim delay-3">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="feature-icon"><img src="../images/data-visualization-eye-gradient.svg" alt=""></div>
@@ -368,28 +369,28 @@ a { color: var(--secondary); text-decoration: none; }
 
     <section class="section section-light">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header anim">
                 <span class="section-label">Proven Results</span>
                 <h2 class="section-title">Measurable Impact</h2>
                 <p class="section-subtitle">Real results from community banks and credit unions using Virtual Banker.</p>
             </div>
             <div class="stats-row">
-                <div class="stat-item">
+                <div class="stat-item anim delay-1">
                     <div class="stat-number" data-target="35" data-suffix="%">0%</div>
                     <div class="stat-label">Calls Automated</div>
                     <div class="stat-sublabel">Routine inquiries handled</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item anim delay-2">
                     <div class="stat-number" data-target="30" data-suffix="%">0%</div>
                     <div class="stat-label">Reduced Wait Times</div>
                     <div class="stat-sublabel">Faster member service</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item anim delay-3">
                     <div class="stat-number" data-target="24" data-suffix="/7">0</div>
                     <div class="stat-label">Always Available</div>
                     <div class="stat-sublabel">No after-hours gaps</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item anim delay-4">
                     <div class="stat-number" data-target="90" data-suffix="%+">0%</div>
                     <div class="stat-label">Member Satisfaction</div>
                     <div class="stat-sublabel">Post-call survey scores</div>
@@ -400,23 +401,23 @@ a { color: var(--secondary); text-decoration: none; }
 
     <section id="how-it-works" class="section section-dark" style="background-color: #112240;">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header anim">
                 <span class="section-label">How It Works</span>
                 <h2 class="section-title">From Call to Resolution</h2>
                 <p class="section-subtitle">Virtual Banker handles calls end-to-end with AI that understands context and delivers answers.</p>
             </div>
             <div class="steps-container">
-                <div class="step-item">
+                <div class="step-item anim delay-1">
                     <div class="step-number">1</div>
                     <h3>Member Calls</h3>
                     <p>Member calls your main line. Virtual Banker answers instantly, 24/7.</p>
                 </div>
-                <div class="step-item">
+                <div class="step-item anim delay-2">
                     <div class="step-number">2</div>
                     <h3>AI Understands</h3>
                     <p>Natural language processing identifies intent: balance check, transfer, fraud report, etc.</p>
                 </div>
-                <div class="step-item">
+                <div class="step-item anim delay-3">
                     <div class="step-number">3</div>
                     <h3>Secure Action</h3>
                     <p>Authenticates the caller and completes the request or routes to the right team.</p>
@@ -427,33 +428,33 @@ a { color: var(--secondary); text-decoration: none; }
 
     <section class="section section-dark">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header anim">
                 <span class="section-label">Use Cases</span>
                 <h2 class="section-title">What Members Can Do</h2>
                 <p class="section-subtitle">Common requests Virtual Banker handles every day.</p>
             </div>
             <div class="use-cases-grid">
-                <div class="use-case-card">
+                <div class="use-case-card anim delay-1">
                     <h4>💰 Account Balances</h4>
                     <p>"What's my checking balance?" Get real-time balances across all accounts instantly.</p>
                 </div>
-                <div class="use-case-card">
+                <div class="use-case-card anim delay-2">
                     <h4>📜 Recent Transactions</h4>
                     <p>"What were my last 5 transactions?" Hear recent activity without waiting for a rep.</p>
                 </div>
-                <div class="use-case-card">
+                <div class="use-case-card anim delay-3">
                     <h4>💸 Transfer Funds</h4>
                     <p>"Transfer $200 from savings to checking." Move money between accounts securely.</p>
                 </div>
-                <div class="use-case-card">
+                <div class="use-case-card anim delay-1">
                     <h4>🔒 Report Lost Card</h4>
                     <p>"I lost my debit card." Instantly lock the card and order a replacement.</p>
                 </div>
-                <div class="use-case-card">
+                <div class="use-case-card anim delay-2">
                     <h4>📍 Branch & ATM Locator</h4>
                     <p>"Where's the nearest branch?" Get location, hours, and directions.</p>
                 </div>
-                <div class="use-case-card">
+                <div class="use-case-card anim delay-3">
                     <h4>📞 Smart Routing</h4>
                     <p>"I need to talk to someone about a loan." Routes to the right department instantly.</p>
                 </div>
@@ -463,11 +464,11 @@ a { color: var(--secondary); text-decoration: none; }
 
     <section id="faq" class="section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header anim">
                 <span class="section-label">FAQ</span>
                 <h2 class="section-title">Common Questions</h2>
             </div>
-            <div class="faq-accordion">
+            <div class="faq-accordion anim">
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <h4>How does Virtual Banker integrate with our core system?</h4>
@@ -538,7 +539,7 @@ a { color: var(--secondary); text-decoration: none; }
     </section>
 
     <section class="cta-section">
-        <div class="container">
+        <div class="container anim">
             <h2>Ready to Transform Your Call Center?</h2>
             <p>See how Virtual Banker can help your institution deliver better service while reducing operational costs.</p>
             <div class="cta-buttons">
@@ -612,5 +613,8 @@ a { color: var(--secondary); text-decoration: none; }
         document.body.style.overflow = '';
     }
     </script>
+<script>
+(function(){var els=document.querySelectorAll('.anim,.anim-left,.anim-right,.anim-scale');var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:0.12});els.forEach(function(el){obs.observe(el);});document.querySelectorAll('.hero .anim,.hero .anim-left,.hero .anim-right,.page-hero .anim').forEach(function(el){setTimeout(function(){el.classList.add('in');},120);});})();
+</script>
 </body>
 </html>
