@@ -554,20 +554,47 @@
 <script>
 (function(){
     document.querySelectorAll('.product-card').forEach(function(card) {
+        var rx = 0, ry = 0, tx = 0, ty = 0, mx = 50, my = 50, tmx = 50, tmy = 50;
+        var inside = false, raf = null;
+
+        function lerp(a, b, t) { return a + (b - a) * t; }
+
+        function tick() {
+            rx = lerp(rx, tx, 0.1);
+            ry = lerp(ry, ty, 0.1);
+            mx = lerp(mx, tmx, 0.1);
+            my = lerp(my, tmy, 0.1);
+            card.style.transform = 'perspective(900px) rotateX('+rx.toFixed(3)+'deg) rotateY('+ry.toFixed(3)+'deg) translateY(-6px)';
+            var gloss = card.querySelector('.card-gloss');
+            if (gloss) { gloss.style.setProperty('--mx', mx.toFixed(1)+'%'); gloss.style.setProperty('--my', my.toFixed(1)+'%'); }
+            if (inside || Math.abs(rx) > 0.05 || Math.abs(ry) > 0.05) {
+                raf = requestAnimationFrame(tick);
+            } else {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+                raf = null;
+            }
+        }
+
+        card.addEventListener('mouseenter', function() {
+            inside = true;
+            card.style.boxShadow = '0 0 0 2px rgba(166,43,159,0.4), 0 24px 60px rgba(166,43,159,0.18)';
+            if (!raf) raf = requestAnimationFrame(tick);
+        });
+
         card.addEventListener('mousemove', function(e) {
             var r = card.getBoundingClientRect();
             var x = e.clientX - r.left;
             var y = e.clientY - r.top;
-            var cx = r.width / 2, cy = r.height / 2;
-            var rotY = ((x - cx) / cx) * 8;
-            var rotX = -((y - cy) / cy) * 6;
-            card.style.transform = 'perspective(800px) rotateX('+rotX+'deg) rotateY('+rotY+'deg) translateY(-6px)';
-            card.style.boxShadow = '0 0 0 2px rgba(166,43,159,0.4), 0 24px 60px rgba(166,43,159,0.18)';
-            var gloss = card.querySelector('.card-gloss');
-            if (gloss) { gloss.style.setProperty('--mx', (x/r.width*100)+'%'); gloss.style.setProperty('--my', (y/r.height*100)+'%'); }
+            ty = ((x / r.width) - 0.5) * 14;
+            tx = -((y / r.height) - 0.5) * 10;
+            tmx = (x / r.width) * 100;
+            tmy = (y / r.height) * 100;
         });
+
         card.addEventListener('mouseleave', function() {
-            card.style.transform = '';
+            inside = false;
+            tx = 0; ty = 0;
             card.style.boxShadow = '';
         });
     });
